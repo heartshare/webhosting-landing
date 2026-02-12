@@ -2,14 +2,15 @@
 """
 ModelScope Image Generation Script
 Generates images using ModelScope's API with async task polling.
-Simple mode: generates image, sends to Telegram, shows prompt and path only.
+Simple mode: generates image, sends to Telegram by default, shows prompt and path only.
 
 Usage:
     python generate.py --prompt "A golden cat" --output result.jpg [--model MODEL] [--api-key KEY]
 
 Environment:
     MODELSCOPE_API_KEY: API key for ModelScope (optional, can use --api-key)
-    TELEGRAM_BOT_TOKEN: Telegram bot token (required for --send flag)
+    TELEGRAM_BOT_TOKEN: Telegram bot token (required for sending)
+    TELEGRAM_CHAT_ID: Default Telegram chat ID (used when --send not specified)
 """
 
 import argparse
@@ -23,6 +24,7 @@ from io import BytesIO
 
 BASE_URL = "https://api-inference.modelscope.cn/"
 DEFAULT_MODEL = "Tongyi-MAI/Z-Image-Turbo"
+DEFAULT_CHAT_ID = "350795515"  # Default chat ID (Bob @taobob)
 
 
 def send_to_telegram(image_path: str, chat_id: str, quiet: bool = True) -> bool:
@@ -89,7 +91,7 @@ def generate_image(
         quiet: Suppress output messages
 
     Returns:
-        Path to the saved image
+        Path to saved image
 
     Raises:
         ValueError: If no API key provided
@@ -190,13 +192,18 @@ def main():
         help="JSON file with LoRA config for multiple LoRAs"
     )
     parser.add_argument(
+        "--no-send",
+        action="store_true",
+        help="Disable automatic Telegram sending"
+    )
+    parser.add_argument(
         "--send",
-        help="Send image to Telegram chat ID after generation (requires TELEGRAM_BOT_TOKEN env var)"
+        help="Send image to specific Telegram chat ID (overrides default)"
     )
     parser.add_argument(
         "--quiet", "-q",
         action="store_true",
-        help="Show only prompt and path, suppress all other output"
+        help="Show only prompt, path, and file size (suppress all other output)"
     )
 
     args = parser.parse_args()
@@ -209,9 +216,15 @@ def main():
         with open(args.lora_config) as f:
             loras = json.load(f)
 
+    # Determine chat ID for Telegram sending
+    if args.send:
+        chat_id = args.send
+    else:
+        chat_id = os.environ.get("TELEGRAM_CHAT_ID", DEFAULT_CHAT_ID)
+
     try:
-        # Generate image (quiet mode by default)
-        generate_image(
+        # Generate image
+        image_path = generate_image(
             prompt=args.prompt,
             output_path=args.output,
             model=args.model,
@@ -220,11 +233,11 @@ def main():
             quiet=args.quiet,
         )
 
-        # Send to Telegram if requested
-        if args.send:
+        # Send to Telegram (unless --no-send is used)
+        if not args.no_send:
             if not args.quiet:
                 print("\n📤 Sending to Telegram...")
-            send_to_telegram(args.output, args.send, quiet=args.quiet)
+            send_to_telegram(image_path, chat_id, quiet=args.quiet)
 
         # Show summary (only in non-quiet mode)
         if not args.quiet:
@@ -238,7 +251,11 @@ def main():
             if os.path.exists(args.output):
                 file_size = os.path.getsize(args.output)
                 file_size_kb = file_size / 1024
-                print(f"Size:   {file_size_kb:.1f} KB")
+                if file_size_kb < 1024:
+                    print(f"Size:   {file_size_kb:.1f} KB")
+                else:
+                    file_size_mb = file_size_kb / 1024
+                    print(f"Size:   {file_size_mb:.1f} MB")
 
     except Exception as e:
         if not args.quiet:
