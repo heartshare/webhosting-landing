@@ -2,12 +2,14 @@
 """
 ModelScope Image Generation Script
 Generates images using ModelScope's API with async task polling.
+Automatically describes generated images after creation.
 
 Usage:
     python generate.py --prompt "A golden cat" --output result.jpg [--model MODEL] [--api-key KEY]
 
 Environment:
     MODELSCOPE_API_KEY: API key for ModelScope (optional, can use --api-key)
+    OPENAI_API_KEY: API key for OpenAI (required for description feature)
 """
 
 import argparse
@@ -110,7 +112,7 @@ def generate_image(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate images using ModelScope API"
+        description="Generate images using ModelScope API with automatic description"
     )
     parser.add_argument(
         "--prompt", "-p",
@@ -140,12 +142,12 @@ def main():
         help="JSON file with LoRA config for multiple LoRAs"
     )
     parser.add_argument(
-        "--describe", "-d",
+        "--no-describe",
         action="store_true",
-        help="Describe the generated image after creation"
+        help="Disable automatic image description (description is enabled by default)"
     )
     parser.add_argument(
-        "--language", "-l",
+        "--lang",
         default="zh",
         choices=["en", "zh"],
         help="Description language (en=English, zh=Chinese, default: zh)"
@@ -170,19 +172,23 @@ def main():
             loras=loras,
         )
 
-        # Describe image if requested
-        if args.describe:
+        # Describe image automatically (unless disabled)
+        if not args.no_describe:
             script_dir = os.path.dirname(os.path.abspath(__file__))
             describe_script = os.path.join(script_dir, "describe.py")
 
             if os.path.exists(describe_script):
                 print("\n📝 Generating image description...")
-                subprocess.run([
-                    sys.executable,
-                    describe_script,
-                    "--image", args.output,
-                    "--language", args.language
-                ], check=True)
+                try:
+                    subprocess.run([
+                        sys.executable,
+                        describe_script,
+                        "--image", args.output,
+                        "--language", args.lang
+                    ], check=True)
+                except subprocess.CalledProcessError:
+                    print("⚠️  Description failed (missing OPENAI_API_KEY or other error)")
+                    print("💡 Set OPENAI_API_KEY environment variable to enable descriptions")
             else:
                 print(f"\n⚠️  Warning: describe.py not found, skipping description")
 
