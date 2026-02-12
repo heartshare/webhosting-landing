@@ -7,10 +7,12 @@
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.421",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "remotion": "4.0.421",
+    "@remotion/player": "^4.0.421",
     "@remotion/tailwind-v4": "4.0.421",
+    "next": "^16.1.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "remotion": "4.0.421",
     "tailwindcss": "4.0.0"
   },
   "devDependencies": {
@@ -22,8 +24,11 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "remotion studio",
-    "build": "remotion bundle",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "remotion": "remotion studio",
+    "remotion:build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },
