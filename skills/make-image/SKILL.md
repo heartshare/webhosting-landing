@@ -12,6 +12,8 @@ description: >
 Generate AI images using ModelScope's inference API with async task polling.
 **Images are automatically described after generation** using GPT-4 Vision.
 
+Use `--quiet` or `-q` flag to show **only the image description** and suppress all other output.
+
 ## Quick Start
 
 ```bash
@@ -32,6 +34,16 @@ python scripts/generate.py \
   --output garden.jpg
 ```
 This will generate the image AND automatically describe it in Chinese.
+
+### Quiet Mode (Show Only Description)
+
+```bash
+python scripts/generate.py \
+  --prompt "A cute cat" \
+  --output cat.jpg \
+  --quiet
+```
+This suppresses all intermediate output and shows **only the image description**.
 
 ### Disable Description
 
@@ -119,6 +131,7 @@ python scripts/describe.py --image path/to/image.jpg --language zh
 | `--no-describe` | - | No | `false` | Disable automatic image description |
 | `--lang` | - | No | `zh` | Description language: `zh` (Chinese) or `en` (English) |
 | `--send` | - | No | - | Telegram chat ID to send image to after generation (requires `TELEGRAM_BOT_TOKEN`) |
+| `--quiet` | `-q` | No | false | Show only image description, suppress all other output |
 
 ## Environment Variables
 
@@ -132,6 +145,7 @@ python scripts/describe.py --image path/to/image.jpg --language zh
 - Supports up to 6 LoRAs with weight coefficients summing to 1.0
 - Output format determined by file extension (`.jpg`, `.png`, etc.)
 - **Description is enabled by default** - use `--no-describe` to disable
+- **Quiet mode**: Use `--quiet` or `-q` to show only the description output, suppressing all other messages
 - **Telegram sending**: Use `--send <chat_id>` to send image directly to Telegram
 - Image sends first, then description is generated (if enabled)
 - Description requires `OPENAI_API_KEY` environment variable; gracefully skips if missing

@@ -28,24 +28,27 @@ BASE_URL = "https://api-inference.modelscope.cn/"
 DEFAULT_MODEL = "Tongyi-MAI/Z-Image-Turbo"
 
 
-def send_to_telegram(image_path: str, chat_id: str) -> bool:
+def send_to_telegram(image_path: str, chat_id: str, quiet: bool = False) -> bool:
     """
     Send image to Telegram via bot API.
 
     Args:
         image_path: Path to image file
         chat_id: Telegram chat ID to send to
+        quiet: Suppress output messages
 
     Returns:
         True if sent successfully, False otherwise
     """
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
     if not bot_token:
-        print("⚠️  TELEGRAM_BOT_TOKEN not set, cannot send to Telegram")
+        if not quiet:
+            print("⚠️  TELEGRAM_BOT_TOKEN not set, cannot send to Telegram")
         return False
 
     if not os.path.exists(image_path):
-        print(f"⚠️  Image not found: {image_path}")
+        if not quiet:
+            print(f"⚠️  Image not found: {image_path}")
         return False
 
     try:
@@ -56,13 +59,16 @@ def send_to_telegram(image_path: str, chat_id: str) -> bool:
             response = requests.post(url, files=files, data=data)
 
         if response.status_code == 200:
-            print(f"✅ Image sent to Telegram chat {chat_id}")
+            if not quiet:
+                print(f"✅ Image sent to Telegram chat {chat_id}")
             return True
         else:
-            print(f"⚠️  Failed to send to Telegram: {response.text}")
+            if not quiet:
+                print(f"⚠️  Failed to send to Telegram: {response.text}")
             return False
     except Exception as e:
-        print(f"⚠️  Error sending to Telegram: {e}")
+        if not quiet:
+            print(f"⚠️  Error sending to Telegram: {e}")
         return False
 
 
@@ -72,6 +78,7 @@ def generate_image(
     model: str = DEFAULT_MODEL,
     api_key: str = None,
     loras: str | dict | None = None,
+    quiet: bool = False,
 ) -> str:
     """
     Generate an image using ModelScope API.
@@ -82,9 +89,10 @@ def generate_image(
         model: ModelScope model ID
         api_key: ModelScope API key (falls back to MODELSCOPE_API_KEY env var)
         loras: Optional LoRA configuration (string or dict)
+        quiet: Suppress output messages
 
     Returns:
-        Path to the saved image
+        Path to saved image
 
     Raises:
         ValueError: If no API key provided
@@ -116,7 +124,8 @@ def generate_image(
     response.raise_for_status()
     task_id = response.json()["task_id"]
 
-    print(f"Task submitted: {task_id}")
+    if not quiet:
+        print(f"Task submitted: {task_id}")
 
     # Poll for result
     max_attempts = 60  # 5 minutes max
@@ -129,7 +138,8 @@ def generate_image(
         data = result.json()
 
         status = data.get("task_status", "UNKNOWN")
-        print(f"Status: {status} (attempt {attempt + 1}/{max_attempts})")
+        if not quiet:
+            print(f"Status: {status} (attempt {attempt + 1}/{max_attempts})")
 
         if status == "SUCCEED":
             image_url = data["output_images"][0]
@@ -138,7 +148,8 @@ def generate_image(
 
             image = Image.open(BytesIO(image_response.content))
             image.save(output_path)
-            print(f"Image saved: {output_path}")
+            if not quiet:
+                print(f"Image saved: {output_path}")
             return output_path
 
         elif status == "FAILED":
@@ -196,6 +207,11 @@ def main():
         "--send",
         help="Send image to Telegram chat ID after generation (requires TELEGRAM_BOT_TOKEN env var)"
     )
+    parser.add_argument(
+        "--quiet", "-q",
+        action="store_true",
+        help="Show only image description, suppress all other output"
+    )
 
     args = parser.parse_args()
 
@@ -214,12 +230,14 @@ def main():
             model=args.model,
             api_key=args.api_key,
             loras=loras,
+            quiet=args.quiet,
         )
 
         # Send to Telegram if requested
         if args.send:
-            print("\n📤 Sending to Telegram...")
-            send_to_telegram(args.output, args.send)
+            if not args.quiet:
+                print("\n📤 Sending to Telegram...")
+            send_to_telegram(args.output, args.send, quiet=args.quiet)
 
         # Describe image automatically (unless disabled)
         if not args.no_describe:
@@ -227,7 +245,8 @@ def main():
             describe_script = os.path.join(script_dir, "describe.py")
 
             if os.path.exists(describe_script):
-                print("\n📝 Generating image description...")
+                if not args.quiet:
+                    print("\n📝 Generating image description...")
                 try:
                     subprocess.run([
                         sys.executable,
@@ -236,13 +255,16 @@ def main():
                         "--language", args.lang
                     ], check=True)
                 except subprocess.CalledProcessError:
-                    print("⚠️  Description failed (missing OPENAI_API_KEY or other error)")
-                    print("💡 Set OPENAI_API_KEY environment variable to enable descriptions")
+                    if not args.quiet:
+                        print("⚠️  Description failed (missing OPENAI_API_KEY or other error)")
+                        print("💡 Set OPENAI_API_KEY environment variable to enable descriptions")
             else:
-                print(f"\n⚠️  Warning: describe.py not found, skipping description")
+                if not args.quiet:
+                    print(f"\n⚠️  Warning: describe.py not found, skipping description")
 
     except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+        if not args.quiet:
+            print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
 
 
