@@ -338,6 +338,198 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        {/* Hosting Images Section */}
+        <div
+          style={{
+            backgroundColor: "#0EA5E9",
+            color: "white",
+            borderRadius: 24,
+            padding: 40,
+            marginBottom: 40,
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "clamp(24px, 4vw, 36px)",
+              fontWeight: "700",
+              textAlign: "center",
+              marginBottom: 32,
+              fontFamily: "'Fredoka', sans-serif",
+            }}
+          >
+            See Our Infrastructure! 🖥️
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: 32,
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                borderRadius: 16,
+                padding: 24,
+                textAlign: "center",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                border: "3px solid transparent",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#F0F9FF";
+                e.currentTarget.style.transform = "translateY(-4px)";
+                e.currentTarget.style.boxShadow = "0 12px 30px rgba(240, 249, 255, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "transparent";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <img
+                src="/images/server-infrastructure.png"
+                alt="Server Infrastructure"
+                style={{
+                  width: "100%",
+                  height: 200,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  marginBottom: 16,
+                }}
+              />
+              <h3
+                style={{
+                  fontSize: 20,
+                  fontWeight: "700",
+                  color: "white",
+                  marginBottom: 8,
+                  fontFamily: "'Fredoka', sans-serif",
+                }}
+              >
+                Powerful Infrastructure
+              </h3>
+              <p
+                style={{
+                  fontSize: 16,
+                  color: "rgba(255, 255, 255, 0.9)",
+                  lineHeight: 1.5,
+                }}
+              >
+                State-of-the-art servers with 99.9% uptime!
+              </p>
+            </div>
+
+            <div
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                borderRadius: 16,
+                padding: 24,
+                textAlign: "center",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                border: "3px solid transparent",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#F0F9FF";
+                e.currentTarget.style.transform = "translateY(-4px)";
+                e.currentTarget.style.boxShadow = "0 12px 30px rgba(240, 249, 255, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "transparent";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <img
+                src="/images/cloud-dashboard.png"
+                alt="Cloud Dashboard"
+                style={{
+                  width: "100%",
+                  height: 200,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  marginBottom: 16,
+                }}
+              />
+              <h3
+                style={{
+                  fontSize: 20,
+                  fontWeight: "700",
+                  color: "white",
+                  marginBottom: 8,
+                  fontFamily: "'Fredoka', sans-serif",
+                }}
+              >
+                Smart Dashboard
+              </h3>
+              <p
+                style={{
+                  fontSize: 16,
+                  color: "rgba(255, 255, 255, 0.9)",
+                  lineHeight: 1.5,
+                }}
+              >
+                Real-time analytics and one-click deployments!
+              </p>
+            </div>
+
+            <div
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                borderRadius: 16,
+                padding: 24,
+                textAlign: "center",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                border: "3px solid transparent",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#F0F9FF";
+                e.currentTarget.style.transform = "translateY(-4px)";
+                e.currentTarget.style.boxShadow = "0 12px 30px rgba(240, 249, 255, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "transparent";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <img
+                src="/images/security-hosting.png"
+                alt="Secure Hosting"
+                style={{
+                  width: "100%",
+                  height: 200,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  marginBottom: 16,
+                }}
+              />
+              <h3
+                style={{
+                  fontSize: 20,
+                  fontWeight: "700",
+                  color: "white",
+                  marginBottom: 8,
+                  fontFamily: "'Fredoka', sans-serif",
+                }}
+              >
+                Super Secure
+              </h3>
+              <p
+                style={{
+                  fontSize: 16,
+                  color: "rgba(255, 255, 255, 0.9)",
+                  lineHeight: 1.5,
+                }}
+              >
+                Advanced encryption and DDoS protection!
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Testimonials Section */}
