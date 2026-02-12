@@ -2,7 +2,7 @@
 name: make-image
 description: >
   Generate AI images using ModelScope's API (Tongyi-MAI/Z-Image-Turbo and other models).
-  Simple mode: generates image, sends to YOU (Telegram only), shows prompt and path only.
+  Simple mode: generates image, sends to YOU via OpenClaw messaging (Telegram), shows prompt and path only.
   Supports LoRA fine-tuning and async generation.
   Use when the user asks to generate, create, or produce AI images, artwork, or visual content.
   Triggers: generate image, create image, AI image, draw, make picture, ModelScope image.
@@ -11,9 +11,16 @@ description: >
 # ModelScope Image Generation
 
 Generate AI images using ModelScope's inference API with async task polling.
-**Simple mode**: generates image, sends to YOU via Telegram ONLY, shows prompt and path only.
+**Simple mode**: generates image, outputs marker for OpenClaw to send via Telegram, shows prompt & path only.
 
 **Important**: Images are sent ONLY to your personal Telegram chat (ID: 350795515). No other destinations.
+
+## How It Works
+
+1. Script generates image using ModelScope API
+2. Script outputs marker: `__OPENCLAW_SEND_IMAGE__: /path/to/image.jpg`
+3. OpenClaw detects the marker and sends image using its message tool
+4. No need for TELEGRAM_BOT_TOKEN - uses OpenClaw's messaging system
 
 Use `--quiet` or `-q` flag to show **only prompt and path** (suppresses all intermediate output).
 
@@ -111,16 +118,15 @@ python scripts/generate.py \
 ## Environment Variables
 
 - `MODELSCOPE_API_KEY`: Your ModelScope API token (required if not using `--api-key`)
-- `TELEGRAM_BOT_TOKEN`: Telegram bot token (required for sending images)
-- `TELEGRAM_CHAT_ID`: Default Telegram chat ID (defaults to your ID: 350795515)
 
 ## Notes
 
 - Generation is async; script polls for up to 5 minutes
 - Supports up to 6 LoRAs with weight coefficients summing to 1.0
 - Output format determined by file extension (`.jpg`, `.png`, etc.)
-- **Automatic Telegram sending enabled by default** - images sent ONLY to your chat (ID: 350795515)
+- **Automatic Telegram sending** - script outputs marker, OpenClaw sends to your chat (ID: 350795515)
+- **Uses OpenClaw messaging** - no need for TELEGRAM_BOT_TOKEN
 - **Simple mode**: Show only prompt, path, and file size (suppresses all other output)
-- **`--no-send` flag**: Disable automatic Telegram sending
+- **`--no-send` flag**: Skip sending (just generate and save)
 - File size display: Shows KB for <1MB files, MB for >=1MB files
 - No description generation (faster workflow)

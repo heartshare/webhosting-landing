@@ -2,15 +2,17 @@
 """
 ModelScope Image Generation Script
 Generates images using ModelScope's API with async task polling.
-Simple mode: generates image, sends to Telegram by default, shows prompt and path only.
+Simple mode: generates image and outputs marker for OpenClaw to send via message tool.
 
 Usage:
     python generate.py --prompt "A golden cat" --output result.jpg [--model MODEL] [--api-key KEY]
 
 Environment:
     MODELSCOPE_API_KEY: API key for ModelScope (optional, can use --api-key)
-    TELEGRAM_BOT_TOKEN: Telegram bot token (required for sending)
-    TELEGRAM_CHAT_ID: Default Telegram chat ID (used when --send not specified)
+
+Output:
+    When --send is used, outputs: __OPENCLAW_SEND_IMAGE__: /path/to/image.jpg
+    OpenClaw will then send the image using its message tool
 """
 
 import argparse
@@ -24,51 +26,6 @@ from io import BytesIO
 
 BASE_URL = "https://api-inference.modelscope.cn/"
 DEFAULT_MODEL = "Tongyi-MAI/Z-Image-Turbo"
-DEFAULT_CHAT_ID = "350795515"  # Default chat ID (Bob @taobob)
-
-
-def send_to_telegram(image_path: str, chat_id: str, quiet: bool = True) -> bool:
-    """
-    Send image to Telegram via bot API.
-
-    Args:
-        image_path: Path to image file
-        chat_id: Telegram chat ID to send to
-        quiet: Suppress output messages
-
-    Returns:
-        True if sent successfully, False otherwise
-    """
-    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
-    if not bot_token:
-        if not quiet:
-            print("⚠️  TELEGRAM_BOT_TOKEN not set, cannot send to Telegram")
-        return False
-
-    if not os.path.exists(image_path):
-        if not quiet:
-            print(f"⚠️  Image not found: {image_path}")
-        return False
-
-    try:
-        url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
-        with open(image_path, 'rb') as photo:
-            files = {'photo': photo}
-            data = {'chat_id': chat_id}
-            response = requests.post(url, files=files, data=data)
-
-        if response.status_code == 200:
-            if not quiet:
-                print(f"✅ Image sent to Telegram chat {chat_id}")
-            return True
-        else:
-            if not quiet:
-                print(f"⚠️  Failed to send to Telegram: {response.text}")
-            return False
-    except Exception as e:
-        if not quiet:
-            print(f"⚠️  Error sending to Telegram: {e}")
-        return False
 
 
 def generate_image(
@@ -212,9 +169,6 @@ def main():
         with open(args.lora_config) as f:
             loras = json.load(f)
 
-    # Always use default chat ID (Bob @taobob)
-    chat_id = os.environ.get("TELEGRAM_CHAT_ID", DEFAULT_CHAT_ID)
-
     try:
         # Generate image
         image_path = generate_image(
@@ -226,12 +180,10 @@ def main():
             quiet=args.quiet,
         )
 
-        # Send to Telegram (unless --no-send is used)
+        # Output marker for OpenClaw to send the image
         if not args.no_send:
-            if not args.quiet:
-                print("\n📤 Sending to Telegram...")
-            send_to_telegram(image_path, chat_id, quiet=args.quiet)
-
+            print(f"\n__OPENCLAW_SEND_IMAGE__: {os.path.abspath(image_path)}")
+        
         # Show summary (only in non-quiet mode)
         if not args.quiet:
             print("\n" + "="*60)
