@@ -2,15 +2,13 @@
 """
 ModelScope Image Generation Script
 Generates images using ModelScope's API with async task polling.
-Automatically describes generated images after creation.
-Supports sending images to Telegram.
+Simple mode: generates image, sends to Telegram, shows prompt and path only.
 
 Usage:
     python generate.py --prompt "A golden cat" --output result.jpg [--model MODEL] [--api-key KEY]
 
 Environment:
     MODELSCOPE_API_KEY: API key for ModelScope (optional, can use --api-key)
-    OPENAI_API_KEY: API key for OpenAI (required for description feature)
     TELEGRAM_BOT_TOKEN: Telegram bot token (required for --send flag)
 """
 
@@ -20,7 +18,6 @@ import sys
 import time
 import json
 import requests
-import subprocess
 from PIL import Image
 from io import BytesIO
 
@@ -28,7 +25,7 @@ BASE_URL = "https://api-inference.modelscope.cn/"
 DEFAULT_MODEL = "Tongyi-MAI/Z-Image-Turbo"
 
 
-def send_to_telegram(image_path: str, chat_id: str, quiet: bool = False) -> bool:
+def send_to_telegram(image_path: str, chat_id: str, quiet: bool = True) -> bool:
     """
     Send image to Telegram via bot API.
 
@@ -78,7 +75,7 @@ def generate_image(
     model: str = DEFAULT_MODEL,
     api_key: str = None,
     loras: str | dict | None = None,
-    quiet: bool = False,
+    quiet: bool = True,
 ) -> str:
     """
     Generate an image using ModelScope API.
@@ -92,7 +89,7 @@ def generate_image(
         quiet: Suppress output messages
 
     Returns:
-        Path to saved image
+        Path to the saved image
 
     Raises:
         ValueError: If no API key provided
@@ -163,7 +160,7 @@ def generate_image(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate images using ModelScope API with automatic description and Telegram sending"
+        description="Generate images using ModelScope API"
     )
     parser.add_argument(
         "--prompt", "-p",
@@ -193,24 +190,13 @@ def main():
         help="JSON file with LoRA config for multiple LoRAs"
     )
     parser.add_argument(
-        "--no-describe",
-        action="store_true",
-        help="Disable automatic image description (description is enabled by default)"
-    )
-    parser.add_argument(
-        "--lang",
-        default="zh",
-        choices=["en", "zh"],
-        help="Description language (en=English, zh=Chinese, default: zh)"
-    )
-    parser.add_argument(
         "--send",
         help="Send image to Telegram chat ID after generation (requires TELEGRAM_BOT_TOKEN env var)"
     )
     parser.add_argument(
         "--quiet", "-q",
         action="store_true",
-        help="Show only image description, suppress all other output"
+        help="Show only prompt and path, suppress all other output"
     )
 
     args = parser.parse_args()
@@ -224,6 +210,7 @@ def main():
             loras = json.load(f)
 
     try:
+        # Generate image (quiet mode by default)
         generate_image(
             prompt=args.prompt,
             output_path=args.output,
@@ -239,28 +226,19 @@ def main():
                 print("\n📤 Sending to Telegram...")
             send_to_telegram(args.output, args.send, quiet=args.quiet)
 
-        # Describe image automatically (unless disabled)
-        if not args.no_describe:
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            describe_script = os.path.join(script_dir, "describe.py")
+        # Show summary (only in non-quiet mode)
+        if not args.quiet:
+            print("\n" + "="*60)
+            print("📊 Image Generated")
+            print("="*60)
+            print(f"Prompt: {args.prompt}")
+            print(f"Path:   {args.output}")
 
-            if os.path.exists(describe_script):
-                if not args.quiet:
-                    print("\n📝 Generating image description...")
-                try:
-                    subprocess.run([
-                        sys.executable,
-                        describe_script,
-                        "--image", args.output,
-                        "--language", args.lang
-                    ], check=True)
-                except subprocess.CalledProcessError:
-                    if not args.quiet:
-                        print("⚠️  Description failed (missing OPENAI_API_KEY or other error)")
-                        print("💡 Set OPENAI_API_KEY environment variable to enable descriptions")
-            else:
-                if not args.quiet:
-                    print(f"\n⚠️  Warning: describe.py not found, skipping description")
+            # Show file size
+            if os.path.exists(args.output):
+                file_size = os.path.getsize(args.output)
+                file_size_kb = file_size / 1024
+                print(f"Size:   {file_size_kb:.1f} KB")
 
     except Exception as e:
         if not args.quiet:

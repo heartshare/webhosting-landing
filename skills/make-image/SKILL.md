@@ -2,7 +2,8 @@
 name: make-image
 description: >
   Generate AI images using ModelScope's API (Tongyi-MAI/Z-Image-Turbo and other models).
-  Automatically describes generated images with vision AI. Supports LoRA fine-tuning and async generation.
+  Simple mode: generates image, sends to Telegram, shows prompt and path only.
+  Supports LoRA fine-tuning and async generation.
   Use when the user asks to generate, create, or produce AI images, artwork, or visual content.
   Triggers: generate image, create image, AI image, draw, make picture, ModelScope image.
 ---
@@ -10,9 +11,9 @@ description: >
 # ModelScope Image Generation
 
 Generate AI images using ModelScope's inference API with async task polling.
-**Images are automatically described after generation** using GPT-4 Vision.
+**Simple mode**: generates image, sends to Telegram, shows prompt and path only (no description, no verbose output).
 
-Use `--quiet` or `-q` flag to show **only the image description** and suppress all other output.
+Use `--quiet` or `-q` flag to show **only prompt and path** (suppresses all intermediate output).
 
 ## Quick Start
 
@@ -26,16 +27,7 @@ python scripts/generate.py --prompt "A golden cat sitting on a cloud" --output c
 
 ## Usage
 
-### Basic Generation (Auto-Description Enabled)
-
-```bash
-python scripts/generate.py \
-  --prompt "A serene Japanese garden with cherry blossoms" \
-  --output garden.jpg
-```
-This will generate the image AND automatically describe it in Chinese.
-
-### Quiet Mode (Show Only Description)
+### Simple Mode (Recommended - Prompt & Path Only)
 
 ```bash
 python scripts/generate.py \
@@ -43,17 +35,27 @@ python scripts/generate.py \
   --output cat.jpg \
   --quiet
 ```
-This suppresses all intermediate output and shows **only the image description**.
+Shows only: prompt, path, and file size. No verbose output, no description.
 
-### Disable Description
+### With Telegram Sending
 
 ```bash
 python scripts/generate.py \
-  --prompt "A quick image test" \
-  --output test.jpg \
-  --no-describe
+  --prompt "A cute dog" \
+  --output dog.jpg \
+  --send 350795515 \
+  --quiet
 ```
-Use `--no-describe` to skip the automatic description step.
+Generates, sends to Telegram, and shows minimal output.
+
+### Full Mode (With Description)
+
+```bash
+python scripts/generate.py \
+  --prompt "A serene Japanese garden with cherry blossoms" \
+  --output garden.jpg
+```
+This will generate image AND automatically describe it in Chinese.
 
 ### With Custom Model
 
@@ -72,18 +74,6 @@ python scripts/generate.py \
   --output dog.jpg \
   --lang en
 ```
-
-### Send to Telegram After Generation
-
-Generate and automatically send to Telegram (requires `TELEGRAM_BOT_TOKEN` env var):
-
-```bash
-python scripts/generate.py \
-  --prompt "A cute puppy" \
-  --output puppy.jpg \
-  --send 123456789
-```
-Where `123456789` is the Telegram chat ID. This sends the image first, then describes it.
 
 ### With LoRA
 
@@ -110,14 +100,6 @@ python scripts/generate.py \
   --lora-config loras.json
 ```
 
-### Standalone Image Description
-
-Describe an existing image without generation:
-
-```bash
-python scripts/describe.py --image path/to/image.jpg --language zh
-```
-
 ## Arguments
 
 | Argument | Short | Required | Default | Description |
@@ -128,15 +110,12 @@ python scripts/describe.py --image path/to/image.jpg --language zh
 | `--api-key` | `-k` | No | `MODELSCOPE_API_KEY` env | API key |
 | `--lora` | `-l` | No | - | Single LoRA repo ID |
 | `--lora-config` | - | No | - | JSON file with LoRA weights |
-| `--no-describe` | - | No | `false` | Disable automatic image description |
-| `--lang` | - | No | `zh` | Description language: `zh` (Chinese) or `en` (English) |
 | `--send` | - | No | - | Telegram chat ID to send image to after generation (requires `TELEGRAM_BOT_TOKEN`) |
-| `--quiet` | `-q` | No | false | Show only image description, suppress all other output |
+| `--quiet` | `-q` | No | false | Show only prompt, path, and file size (suppresses all other output) |
 
 ## Environment Variables
 
 - `MODELSCOPE_API_KEY`: Your ModelScope API token (required if not using `--api-key`)
-- `OPENAI_API_KEY`: OpenAI API key for image description (optional, disables description if not set)
 - `TELEGRAM_BOT_TOKEN`: Telegram bot token for sending images (required when using `--send`)
 
 ## Notes
@@ -144,10 +123,9 @@ python scripts/describe.py --image path/to/image.jpg --language zh
 - Generation is async; script polls for up to 5 minutes
 - Supports up to 6 LoRAs with weight coefficients summing to 1.0
 - Output format determined by file extension (`.jpg`, `.png`, etc.)
-- **Description is enabled by default** - use `--no-describe` to disable
-- **Quiet mode**: Use `--quiet` or `-q` to show only the description output, suppressing all other messages
+- **Simple mode**: Use `--quiet` to show only prompt, path, and file size
+- **Quiet mode**: Suppresses all intermediate output (task status, polling progress, etc.)
 - **Telegram sending**: Use `--send <chat_id>` to send image directly to Telegram
-- Image sends first, then description is generated (if enabled)
-- Description requires `OPENAI_API_KEY` environment variable; gracefully skips if missing
+- Image generates first, then sends to Telegram (if --send is used)
+- **No description**: Simple mode doesn't generate AI descriptions (faster workflow)
 - Telegram sending requires `TELEGRAM_BOT_TOKEN` environment variable
-- Image description uses GPT-4 Vision model for detailed analysis
