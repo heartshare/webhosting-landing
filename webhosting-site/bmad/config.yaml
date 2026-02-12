@@ -1,0 +1,26 @@
+project:
+  name: "CloudForge Web Hosting Site"
+  type: "web-app"
+  level: 1
+  created: "2026-02-09"
+  description: "Premium web hosting landing page with modern UI/UX"
+
+features:
+  - Modern responsive design
+  - Hero section with CTAs
+  - Statistics showcase
+  - Feature highlights
+  - Pricing tiers
+  - Customer testimonials
+  - Complete navigation
+
+team:
+  roles:
+    - product_manager
+    - ux_designer
+    - developer
+
+preferences:
+  primary_language: "html"
+  framework: "vanilla"
+  deployment: "vercel"

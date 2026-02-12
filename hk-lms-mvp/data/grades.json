@@ -1,0 +1,79 @@
+{
+  "student-1": {
+    "studentId": "student-1",
+    "name": "陳小明",
+    "nameEn": "Chen Xiaoming",
+    "grades": [
+      {
+        "subject": "Chinese",
+        "subjectEn": "Chinese",
+        "subjectZh": "中文",
+        "grade": "A",
+        "percentage": 85,
+        "classRank": 3,
+        "totalStudents": 40,
+        "trend": "up",
+        "trendEn": "Improving",
+        "trendZh": "進步",
+        "dssePrediction": "Level 4-5",
+        "history": [
+          { "date": "2025-09", "grade": "B+", "percentage": 78 },
+          { "date": "2025-10", "grade": "A-", "percentage": 82 },
+          { "date": "2025-11", "grade": "A", "percentage": 85 }
+        ]
+      },
+      {
+        "subject": "English",
+        "subjectEn": "English",
+        "subjectZh": "英文",
+        "grade": "B+",
+        "percentage": 78,
+        "classRank": 8,
+        "totalStudents": 40,
+        "trend": "stable",
+        "dssePrediction": "Level 3",
+        "history": [
+          { "date": "2025-09", "grade": "B", "percentage": 75 },
+          { "date": "2025-10", "grade": "B+", "percentage": 76 },
+          { "date": "2025-11", "grade": "B+", "percentage": 78 }
+        ]
+      },
+      {
+        "subject": "Math",
+        "subjectEn": "Math",
+        "subjectZh": "數學",
+        "grade": "A-",
+        "percentage": 82,
+        "classRank": 5,
+        "totalStudents": 40,
+        "trend": "down",
+        "trendEn": "Declining",
+        "trendZh": "下滑",
+        "dssePrediction": "Level 3",
+        "history": [
+          { "date": "2025-09", "grade": "A", "percentage": 85 },
+          { "date": "2025-10", "grade": "A-", "percentage": 83 },
+          { "date": "2025-11", "grade": "A-", "percentage": 82 }
+        ]
+      },
+      {
+        "subject": "Science",
+        "subjectEn": "Science",
+        "subjectZh": "科學",
+        "grade": "B",
+        "percentage": 72,
+        "classRank": 12,
+        "totalStudents": 40,
+        "trend": "up",
+        "trendEn": "Improving",
+        "trendZh": "進步",
+        "dssePrediction": "Level 2",
+        "history": [
+          { "date": "2025-09", "grade": "B-", "percentage": 68 },
+          { "date": "2025-10", "grade": "B", "percentage": 70 },
+          { "date": "2025-11", "grade": "B", "percentage": 72 }
+        ]
+      }
+    ]
+  }
+}

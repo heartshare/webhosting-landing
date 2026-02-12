@@ -197,10 +197,6 @@ def main():
         help="Disable automatic Telegram sending"
     )
     parser.add_argument(
-        "--send",
-        help="Send image to specific Telegram chat ID (overrides default)"
-    )
-    parser.add_argument(
         "--quiet", "-q",
         action="store_true",
         help="Show only prompt, path, and file size (suppress all other output)"
@@ -216,11 +212,8 @@ def main():
         with open(args.lora_config) as f:
             loras = json.load(f)
 
-    # Determine chat ID for Telegram sending
-    if args.send:
-        chat_id = args.send
-    else:
-        chat_id = os.environ.get("TELEGRAM_CHAT_ID", DEFAULT_CHAT_ID)
+    # Always use default chat ID (Bob @taobob)
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID", DEFAULT_CHAT_ID)
 
     try:
         # Generate image

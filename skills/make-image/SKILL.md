@@ -2,7 +2,7 @@
 name: make-image
 description: >
   Generate AI images using ModelScope's API (Tongyi-MAI/Z-Image-Turbo and other models).
-  Simple mode: generates image, sends to Telegram by default, shows prompt and path only.
+  Simple mode: generates image, sends to YOU (Telegram only), shows prompt and path only.
   Supports LoRA fine-tuning and async generation.
   Use when the user asks to generate, create, or produce AI images, artwork, or visual content.
   Triggers: generate image, create image, AI image, draw, make picture, ModelScope image.
@@ -11,7 +11,9 @@ description: >
 # ModelScope Image Generation
 
 Generate AI images using ModelScope's inference API with async task polling.
-**Simple mode**: generates image, sends to Telegram by default, shows prompt and path only.
+**Simple mode**: generates image, sends to YOU via Telegram ONLY, shows prompt and path only.
+
+**Important**: Images are sent ONLY to your personal Telegram chat (ID: 350795515). No other destinations.
 
 Use `--quiet` or `-q` flag to show **only prompt and path** (suppresses all intermediate output).
 
@@ -38,15 +40,7 @@ python scripts/generate.py \
 ```
 No flags needed! It automatically sends to your Telegram chat.
 
-### With Specific Chat ID
-
-```bash
-python scripts/generate.py \
-  --prompt "A cute dog" \
-  --output dog.jpg \
-  --send 123456789
-```
-Overrides the default chat ID.
+**Note**: Images are sent ONLY to you. No option to send to other chats.
 
 ### Disable Telegram Sending
 
@@ -111,7 +105,6 @@ python scripts/generate.py \
 | `--api-key` | `-k` | No | `MODELSCOPE_API_KEY` env | API key |
 | `--lora` | `-l` | No | - | Single LoRA repo ID |
 | `--lora-config` | - | No | - | JSON file with LoRA weights |
-| `--send` | - | No | - | Telegram chat ID to send to (overrides default) |
 | `--no-send` | - | No | false | Disable automatic Telegram sending |
 | `--quiet` | `-q` | No | false | Show only prompt, path, and file size (suppresses all other output) |
 
@@ -119,16 +112,15 @@ python scripts/generate.py \
 
 - `MODELSCOPE_API_KEY`: Your ModelScope API token (required if not using `--api-key`)
 - `TELEGRAM_BOT_TOKEN`: Telegram bot token (required for sending images)
-- `TELEGRAM_CHAT_ID`: Default Telegram chat ID to send to (optional, defaults to your ID)
+- `TELEGRAM_CHAT_ID`: Default Telegram chat ID (defaults to your ID: 350795515)
 
 ## Notes
 
 - Generation is async; script polls for up to 5 minutes
 - Supports up to 6 LoRAs with weight coefficients summing to 1.0
 - Output format determined by file extension (`.jpg`, `.png`, etc.)
-- **Automatic Telegram sending enabled by default** - images sent to your chat after generation
+- **Automatic Telegram sending enabled by default** - images sent ONLY to your chat (ID: 350795515)
 - **Simple mode**: Show only prompt, path, and file size (suppresses all other output)
-- **`--send` flag**: Override default chat ID to send to specific user
 - **`--no-send` flag**: Disable automatic Telegram sending
 - File size display: Shows KB for <1MB files, MB for >=1MB files
 - No description generation (faster workflow)

@@ -1,0 +1,31 @@
+project:
+  name: "HK LMS MVP"
+  type: "web-app"
+  level: 2
+  created: "2026-02-09"
+  description: "Learning Management System MVP tailored for Hong Kong education context"
+
+features:
+  - Student enrollment and management
+  - Course catalog and browsing
+  - Lesson/progress tracking
+  - Assignment submission
+  - Grade viewing
+  - Discussion forums
+  - Chinese/English language support
+  - Mobile-responsive design
+  - Hong Kong curriculum alignment
+
+team:
+  roles:
+    - product_manager
+    - ux_designer
+    - developer
+
+preferences:
+  primary_language: "html"
+  framework: "tailwind"
+  js_framework: "vanilla"
+  deployment: "vercel"
+  target_market: "Hong Kong education"
+  curriculum: "HK DSE & IB aligned"

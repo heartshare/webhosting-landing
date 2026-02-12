@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudForge - Web Hosting Made Fun! 🎉</title>
+    <meta name="description" content="Lightning Fast Hosting for Your Success - Now with Confetti and Playful Animations!">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B9D;
+            --primary-dark: #FF5C8C;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --success: #6BCB77;
+            --warning: #FFA500;
+            --danger: #FF6B6B;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, rgba(45, 52, 54, 0.85) 0%, rgba(74, 74, 74, 0.85) 100%), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #1e293b;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+        font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .hero {
+            padding: 6rem 5%;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .hero-btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-3px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .stats {
+            padding: 4rem 5%;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .features {
+            padding: 5rem 5%;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: left;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            animation: bounce 0.6s ease;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .pricing {
+            padding: 5rem 5%;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            animation: bounce 0.6s ease;
+        }
+
+        .popular-badge {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .billing {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .check {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pricing-btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .pricing-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .pricing-btn.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .testimonials {
+            padding: 5rem 5%;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            animation: bounce 0.6s ease;
+        }
+
+        .stars {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--dark);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            padding: 5rem 5%;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Cloudy Mascot */
+        .cloudy-mascot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9998;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cloudy-body {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+            position: relative;
+        }
+
+        .cloudy-body:hover {
+            transform: scale(1.1);
+        }
+
+        .cloudy-face {
+            position: relative;
+            width: 100%;
+            height: 60%;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cloudy-eyes {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .cloudy-mouth {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .cloudy-speech {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        .speech-bubble {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            max-width: 200px;
+            white-space: nowrap;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .speech-tail {
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid white;
+            border-bottom: 10px solid white;
+            border-radius: 10px 0 10px 10px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Calculator Styles */
+        .calculator-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem auto;
+            max-width: 800px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .slider-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .slider-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--light);
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+        }
+
+        .result-box {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .result-label {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .recommendation {
+            font-size: 0.95rem;
+            color: var(--success);
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--success);
+            background-opacity: 0.1;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .features-grid,
+            .pricing-grid,
+            .testimonials-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cloudy-mascot {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <span>☁️</span>
+                <span>CloudForge</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="cta-btn">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Lightning Fast Hosting<br>for Your Success</h1>
+        <p>Deploy your website in seconds with 99.9% uptime, SSD storage, and 24/7 expert support. Hosting that feels like a warm hug! 🤗</p>
+        <div class="hero-buttons">
+            <button class="hero-btn primary" onclick="triggerConfetti()">Start Free Trial 🎉</button>
+            <button class="hero-btn secondary">View Demo 👀</button>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>99.9%</h3>
+                <p>Happy Dances 💃</p>
+            </div>
+            <div class="stat-item">
+                <h3>50K+</h3>
+                <p>Digital Dreams ✨</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Superhero Squad 🦸‍♂️</p>
+            </div>
+            <div class="stat-item">
+                <h3>10Gbps</h3>
+                <p>Super Speed 🚀</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>Why Your Website Will Love Us! 💖</h2>
+            <p>Everything you need to make your digital dreams come true</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Blazing Fast</h3>
+                <p>NVMe SSD storage and LiteSpeed servers ensure your website loads instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure & Safe</h3>
+                <p>Free SSL certificates, daily backups, and advanced DDoS protection included.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Scalable</h3>
+                <p>Easily upgrade resources as your business grows without any downtime.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Global CDN</h3>
+                <p>Content delivery network ensures fast loading worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3>One-Click Install</h3>
+                <p>Install WordPress, Joomla, and 400+ apps with a single click.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>24/7 Support</h3>
+                <p>Expert team ready to help you anytime via chat, email, or phone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Server Room Gallery -->
+    <section class="gallery" id="gallery">
+        <div class="section-title">
+            <h2>Real Server Rooms, Real Magic! 🏢✨</h2>
+            <p>Take a peek inside our data centers - where the magic happens!</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="Server Room" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>🎪 Where the Magic Happens</h4>
+                    <p>Our state-of-the-art server farm in action!</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-14863684092-9375f5e6d?w=800&q=80" alt="Data Center" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>🖼️ More Cables Than a Spider Web 🕷️</h4>
+                    <p>Connecting your dreams to the world!</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Technology" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>🔥 Cool Servers, Literally 🌡️</h4>
+                    <p>Advanced cooling keeps everything chill!</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="Network" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>🚀 Powering 50K+ Digital Dreams 💪</h4>
+                    <p>Every website deserves a happy home!</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-151697918902-46b44511f27?w=800&q=80" alt="Servers" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>👴 Our Oldest Server Named "Grandpa Rack" 👴</h4>
+                    <p>Still going strong after years of service!</p>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1544197150-b99a580bbcbf?w=800&q=80" alt="Hardware" loading="lazy">
+                <div class="gallery-caption">
+                    <h4>☕ 95% Renewable Energy, 5% Coffee ☕</h4>
+                    <p>Green hosting that tastes good!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <img class="lightbox-content" id="lightbox-image">
+    </div>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="section-title">
+            <h2>Pricing That Won't Break Your Piggy Bank 🐷</h2>
+            <p>No hidden fees. Cancel anytime. We promise! 🤞</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$2.99<span>/mo</span></div>
+                <div class="billing">Billed annually</div>
+                <ul class="features-list">
+                    <li><span class="check">✓</span> 1 Website</li>
+                    <li><span class="check">✓</span> 10GB SSD Storage</li>
+                    <li><span class="check">✓</span> Free SSL Certificate</li>
+                    <li><span class="check">✓</span> 5 Email Accounts</li>
+                    <li><span class="check">✓</span> Standard Support</li>
+                </ul>
+                <button class="pricing-btn secondary">Choose Starter</button>
+            </div>
+            <div class="pricing-card popular">
+                <span class="popular-badge">MOST POPULAR</span>
+                <h3>Professional</h3>
+                <div class="price">$5.99<span>/mo</span></div>
+                <div class="billing">Billed annually</div>
+                <ul class="features-list">
+                    <li><span class="check">✓</span> Unlimited Websites</li>
+                    <li><span class="check">✓</span> 50GB NVMe Storage</li>
+                    <li><span class="check">✓</span> Free SSL + Domain</li>
+                    <li><span class="check">✓</span> Unlimited Email</li>
+                    <li><span class="check">✓</span> Priority Support</li>
+                    <li><span class="check">✓</span> Daily Backups</li>
+                </ul>
+                <button class="pricing-btn primary" onclick="triggerConfetti()">Choose Professional 🎊</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Business</h3>
+                <div class="price">$14.99<span>/mo</span></div>
+                <div class="billing">Billed annually</div>
+                <ul class="features-list">
+                    <li><span class="check">✓</span> Unlimited Websites</li>
+                    <li><span class="check">✓</span> 200GB NVMe Storage</li>
+                    <li><span class="check">✓</span> Free SSL + Domain</li>
+                    <li><span class="check">✓</span> Unlimited Email</li>
+                    <li><span class="check">✓</span> Dedicated Support</li>
+                    <li><span class="check">✓</span> Hourly Backups</li>
+                    <li><span class="check">✓</span> Staging Environment</li>
+                </ul>
+                <button class="pricing-btn secondary">Choose Business</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Love Letters from Our Happy Customers 💌</h2>
+            <p>Real stories from real people who love our hosting!</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"CloudForge has been incredible! My site loads 3x faster than my previous host. Support team is always helpful!"</p>
+                <div class="author">
+                    <div class="author-avatar">SJ</div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Small Business Owner</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Migrated 15 sites to CloudForge and couldn't be happier. One-click WordPress installer is a game changer!"</p>
+                <div class="author">
+                    <div class="author-avatar">MC</div>
+                    <div class="author-info">
+                        <h4>Mike Chen</h4>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Best hosting I've ever used. Zero downtime in 6 months and their support resolved my issue in 5 minutes."</p>
+                <div class="author">
+                    <div class="author-avatar">EP</div>
+                    <div class="author-info">
+                        <h4>Emily Parker</h4>
+                        <p>E-commerce Store Owner</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloudy Mascot -->
+    <div class="cloudy-mascot" id="cloudy-mascot" onclick="cloudyBounce()">
+        <div class="cloudy-body">
+            <div class="cloudy-face">
+                <div class="cloudy-eyes">😊</div>
+                <div class="cloudy-mouth">◠</div>
+            </div>
+        </div>
+        <div class="cloudy-speech">
+            <div class="speech-bubble">👋 Welcome! Ready to start?</div>
+            <div class="speech-tail"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>☁️ CloudForge</h3>
+                <p style="color: var(--gray); margin-top: 0.75rem;">Premium web hosting for businesses and individuals who demand performance and reliability.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">LMS Platform</a></li>
+                    <li><a href="#">Exam Prep</a></li>
+                    <li><a href="#">Parent Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 CloudForge. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cloudy Mascot
+        const cloudy = {
+            element: null,
+            expressions: {
+                happy: { eyes: '😊', mouth: '◠' },
+                excited: { eyes: '🤩', mouth: '◠' },
+                curious: { eyes: '👀', mouth: '◠' },
+                thinking: { eyes: '🤔', mouth: '◐' }
+            },
+            create() {
+                const cloudy = document.createElement('div');
+                cloudy.className = 'cloudy-mascot';
+                cloudy.innerHTML = `
+                    <div class="cloudy-body">
+                        <div class="cloudy-face">
+                            <div class="cloudy-eyes">😊</div>
+                            <div class="cloudy-mouth">◠</div>
+                        </div>
+                    </div>
+                    <div class="cloudy-speech">
+                        <div class="speech-bubble">👋 Welcome! Ready to start?</div>
+                        <div class="speech-tail"></div>
+                    </div>
+                `;
+                document.body.appendChild(cloudy);
+                this.element = cloudy;
+            },
+            bounce() {
+                if (this.element) {
+                    this.element.style.transform = 'translateY(-10px) rotate(-5deg)';
+                    setTimeout(() => {
+                        if (this.element) {
+                            this.element.style.transform = 'translateY(0) rotate(0deg)';
+                        }
+                    }, 300);
+                }
+            }
+        };
+
+        const cloudyMascot = cloudy.create();
+
+        // Enhanced Confetti System
+        function triggerConfetti() {
+            const colors = ['#FF6B9D', '#4ECDC4', '#FFE66D', '#FF6B6B', '#95E1D3', '#FFA500', '#6BCB77'];
+            for (let i = 0; i < 100; i++) {
+                createConfetti(colors[Math.floor(Math.random() * colors.length)]);
+            }
+            
+            // Cloudy celebrates!
+            cloudyMascot.bounce();
+        }
+
+        function createConfetti(color) {
+            const confetti = document.createElement('div');
+            confetti.style.cssText = `
+                position: fixed;
+                z-index: 9999;
+                width: 10px;
+                height: 10px;
+                background: ${color};
+                left: ${Math.random() * 100}vw;
+                top: -10px;
+                border-radius: 2px;
+                pointer-events: none;
+                transition: transform 0.3s ease;
+            `;
+            document.body.appendChild(confetti);
+
+            const duration = Math.random() * 2000 + 2000;
+            const rotation = Math.random() * 720;
+
+            confetti.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: 'translateY(100vh) rotate(720deg)', opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            });
+
+            setTimeout(() => confetti.remove(), duration);
+        }
+
+        // Lightbox Functions
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            
+            const src = img.src.replace('q=80', 'q=1600');
+            lightboxImg.src = src;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            document.querySelector('.lightbox-close').focus();
+        }
+
+        function closeLightbox(event) {
+            if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    closeLightbox({ target: lightbox });
+                }
+            }
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .gallery-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Initialize stats animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const statItems = document.querySelectorAll('.stat-item h3');
+            statItems.forEach(stat => {
+                const text = stat.textContent;
+                const num = parseFloat(text);
+                const duration = 2000;
+                const start = 0;
+                const increment = num / (duration / 16);
+                let current = start;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < num) {
+                        stat.textContent = Math.floor(current) + text.replace(/[0-9.]/g, '');
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        stat.textContent = text;
+                    }
+                };
+
+                updateCounter();
+            });
+        });
+
+        // Performance Calculator
+        function updateCalculator() {
+            // Placeholder for performance calculator
+            // This would calculate hosting needs
+            // For now, let's show a fun alert
+            alert('Performance Calculator coming soon! 📊\n\nWill show:\n- Website size requirements\n- Monthly visitor estimates\n- Bandwidth needs\n- Plan recommendations');
+        }
+
+        // Scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

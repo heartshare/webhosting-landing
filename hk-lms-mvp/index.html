@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HK LMS MVP - Hong Kong Education</title>
+    <meta name="description" content="Mobile-first, bilingual Learning Management System for Hong Kong students">
+    <meta name="theme-color" content="#FF6B9D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HK LMS">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B9D;
+            --primary-dark: #FF5C8C;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --success: #6BCB77;
+            --warning: #FFA500;
+            --danger: #FF6B6B;
+            --info: #6495ED;
+            --dark-bg: #1E1E1E;
+            --dark-card: #2D2D2D;
+            --dark-text: #FFFFFF;
+            --light-bg: #FFF5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: var(--light-bg);
+            color: #1E1E1E;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body.zh {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+        }
+
+        body.offline {
+            background: #f3f4f6;
+        }
+
+        .font-zh {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+        }
+
+        .min-h-[44px] {
+            min-height: 44px;
+        }
+
+        .min-w-[44px] {
+            min-width: 44px;
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-2px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .animate-bounce:hover {
+            animation: bounce 0.5s ease;
+        }
+
+        .dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .dark-mode .card {
+            background-color: var(--dark-card);
+            color: var(--dark-text);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .progress-ring {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring circle {
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        @media (max-width: 640px) {
+            .hidden-mobile {
+                display: none;
+            }
+        }
+
+        .pwa-install-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pwa-install-banner.hidden {
+            display: none;
+        }
+
+        .pwa-install-banner .close-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .offline-banner {
+            background: var(--danger);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9998;
+        }
+
+        .offline-banner.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-teal-50 to-white min-h-screen">
+    <!-- PWA Install Banner -->
+    <div id="pwa-install-banner" class="pwa-install-banner hidden">
+        <div>
+            <div class="font-semibold text-lg">Install HK LMS as an app!</div>
+            <div class="text-sm opacity-90">Add to home screen for offline access</div>
+        </div>
+        <button class="pwa-install-banner .close-btn" onclick="dismissPWAInstall()">&times;</button>
+        <button class="btn-primary min-h-[44px] px-4 ml-3" onclick="installPWA()">Install</button>
+    </div>
+
+    <!-- Offline Banner -->
+    <div id="offline-banner" class="offline-banner hidden">
+        <div>
+            <div class="text-2xl font-bold mb-2">⚠️ You're Offline</div>
+            <div class="text-sm">Some features may be unavailable. Please check your connection.</div>
+        </div>
+        <button class="btn-secondary min-h-[44px] px-4 mt-2" onclick="location.reload()">Retry Connection</button>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-2xl">📚</span>
+                        <span class="font-bold text-xl" style="color: var(--primary);">HK LMS</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div id="online-status" class="flex items-center gap-2 px-3 py-1 rounded-full" style="background: var(--success); color: white;">
+                            <span class="text-sm font-medium">🟢 Online</span>
+                        </div>
+                        <button id="lang-toggle" class="min-h-[44px] min-w-[44px] px-4 py-2 rounded-lg font-medium transition-all hover:bg-gray-100" onclick="toggleLanguage()">
+                            <span id="current-lang">EN</span>
+                        </button>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#/" class="nav-link min-h-[44px] min-w-[44px] px-3 py-2 rounded-lg font-medium transition-all hover:bg-gray-100" data-nav="courses">Courses</a>
+                    <a href="#/assignments" class="nav-link min-h-[44px] min-w-[44px] px-3 py-2 rounded-lg font-medium transition-all hover:bg-gray-100" data-nav="assignments">Assignments</a>
+                    <a href="#/grades" class="nav-link min-h-[44px] min-w-[44px] px-3 py-2 rounded-lg font-medium transition-all hover:bg-gray-100" data-nav="grades">Grades</a>
+                    <a href="#/parent" class="nav-link min-h-[44px] min-w-[44px] px-3 py-2 rounded-lg font-medium transition-all hover:bg-gray-100" data-nav="parent">Parent</a>
+                </nav>
+                <div class="md:hidden">
+                    <button class="min-h-[44px] min-w-[44px] p-2" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 3h14a2 2 0 01-2 2V5a2 2 0 01-2 2H9a2 2 0 01-2 2v4a2 2 0 01 2-2h16z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="app-content" class="pt-20 pb-8 px-4 sm:px-6 lg:px-8">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer-services">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#/" class="text-gray-600 hover:text-gray-900 transition-colors">LMS Platform</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">Exam Prep</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">Parent Portal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer-company">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" data-i18n="footer-support">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900 transition-colors">Documentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">© 2026 HK LMS</h4>
+                    <p class="text-gray-600 text-sm">Built for Hong Kong students 🇭🇰</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // PWA State
+        let isOnline = navigator.onLine;
+        let deferredPrompt = null;
+
+        // Global State
+        const Store = (() => {
+            const initialState = {
+                currentUser: null,
+                language: localStorage.getItem('hk-lms-language') || 'en',
+                currentView: '#/',
+                enrolledCourses: JSON.parse(localStorage.getItem('hk-lms-enrolled') || '[]'),
+                assignments: [],
+                grades: null,
+                notifications: [],
+                darkMode: localStorage.getItem('hk-lms-darkmode') === 'true',
+                isOnline: navigator.onLine,
+            };
+
+            let state = { ...initialState };
+
+            const subscribers = [];
+
+            const persist = () => {
+                localStorage.setItem('hk-lms-state', JSON.stringify(state));
+                localStorage.setItem('hk-lms-language', state.language);
+                localStorage.setItem('hk-lms-enrolled', JSON.stringify(state.enrolledCourses));
+                localStorage.setItem('hk-lms-darkmode', state.darkMode);
+            };
+
+            const notify = () => {
+                subscribers.forEach(fn => fn(state));
+            };
+
+            return {
+                getState: () => state,
+                dispatch: (action, payload) => {
+                    switch(action) {
+                        case 'SET_LANGUAGE':
+                            state.language = payload;
+                            document.body.classList.toggle('zh', payload === 'zh');
+                            updateLanguageUI();
+                            break;
+                        case 'SET_USER':
+                            state.currentUser = user;
+                            persist();
+                            notify();
+                            break;
+                        case 'ENROLL_COURSE':
+                            if (!state.enrolledCourses.includes(payload)) {
+                                state.enrolledCourses.push(payload);
+                            }
+                            break;
+                        case 'TOGGLE_DARK_MODE':
+                            state.darkMode = !state.darkMode;
+                            document.body.classList.toggle('dark-mode');
+                            persist();
+                            notify();
+                            break;
+                        case 'SET_ONLINE_STATUS':
+                            state.isOnline = payload;
+                            updateOnlineUI();
+                            notify();
+                            break;
+                    }
+                    persist();
+                    notify();
+                },
+                subscribe: (fn) => {
+                    subscribers.push(fn);
+                    fn(state);
+                },
+            };
+        })();
+
+        const store = Store();
+        store.subscribe(state => {
+            console.log('State updated:', state);
+        });
+
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('[PWA] Service Worker registered:', registration);
+                        
+                        // Listen for PWA install prompt
+                        window.addEventListener('beforeinstallprompt', (e) => {
+                            e.preventDefault();
+                            deferredPrompt = e;
+                            showPWAInstallBanner();
+                        });
+                        
+                        registration.update();
+                    })
+                    .catch(error => {
+                        console.error('[PWA] Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // Online/Offline detection
+        window.addEventListener('online', () => {
+            isOnline = true;
+            store.dispatch('SET_ONLINE_STATUS', true);
+            hideOfflineBanner();
+        });
+
+        window.addEventListener('offline', () => {
+            isOnline = false;
+            store.dispatch('SET_ONLINE_STATUS', false);
+            showOfflineBanner();
+        });
+
+        // PWA Install functions
+        function showPWAInstallBanner() {
+            const banner = document.getElementById('pwa-install-banner');
+            if (banner) {
+                banner.classList.remove('hidden');
+            }
+        }
+
+        function dismissPWAInstall() {
+            const banner = document.getElementById('pwa-install-banner');
+            if (banner) {
+                banner.classList.add('hidden');
+            }
+            deferredPrompt = null;
+        }
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(choiceResult => {
+                    if (choiceResult.outcome === 'accepted') {
+                        hidePWAInstallBanner();
+                    }
+                });
+            } else {
+                console.log('[PWA] No install prompt available');
+            }
+        }
+
+        // Online/Offline UI
+        function updateOnlineUI() {
+            const statusEl = document.getElementById('online-status');
+            if (statusEl) {
+                const isOnline = store.getState().isOnline;
+                if (isOnline) {
+                    statusEl.innerHTML = '<span class="text-sm font-medium">🟢 Online</span>';
+                    statusEl.style.background = 'var(--success)';
+                } else {
+                    statusEl.innerHTML = '<span class="text-sm font-medium">🔴 Offline</span>';
+                    statusEl.style.background = 'var(--danger)';
+                }
+            }
+        }
+
+        function showOfflineBanner() {
+            const banner = document.getElementById('offline-banner');
+            if (banner) {
+                banner.classList.remove('hidden');
+            }
+        }
+
+        function hideOfflineBanner() {
+            const banner = document.getElementById('offline-banner');
+            if (banner) {
+                banner.classList.add('hidden');
+            }
+        }
+
+        // Language Translations
+        const i18n = {
+            en: {
+                dashboard: 'Dashboard',
+                courses: 'Courses',
+                assignments: 'Assignments',
+                grades: 'Grades',
+                parent: 'Parent',
+                settings: 'Settings',
+                welcome: 'Welcome',
+                progress: 'Progress',
+                lessons: 'Lessons',
+                complete: 'Complete',
+                continueLearning: 'Continue Learning',
+                due: 'Due',
+                notStarted: 'Not Started',
+                inProgress: 'In Progress',
+                submitted: 'Submitted',
+                graded: 'Graded',
+                enrollNow: 'Enroll Now',
+                enrolled: 'Enrolled',
+                allCourses: 'All Courses',
+                myCourses: 'My Courses',
+                filter: 'Filter',
+                search: 'Search',
+                subject: 'Subject',
+                level: 'Level',
+                upload: 'Upload',
+                takePhoto: 'Take Photo',
+                submit: 'Submit',
+                logout: 'Logout',
+                login: 'Login',
+                signup: 'Sign Up',
+                footerServices: 'Services',
+                footerCompany: 'Company',
+                footerSupport: 'Support',
+                installApp: 'Install HK LMS as an app!',
+                offline: 'You are offline. Some features may be unavailable.',
+            },
+            zh: {
+                dashboard: '儀表板',
+                courses: '課程',
+                assignments: '作業',
+                grades: '成績',
+                parent: '家長',
+                settings: '設定',
+                welcome: '歡迎',
+                progress: '進度',
+                lessons: '課程',
+                complete: '完成',
+                continueLearning: '繼續學習',
+                due: '截止',
+                notStarted: '未開始',
+                inProgress: '進行中',
+                submitted: '已提交',
+                graded: '已評分',
+                enrollNow: '立即報名',
+                enrolled: '已報名',
+                allCourses: '所有課程',
+                myCourses: '我的課程',
+                filter: '篩選',
+                search: '搜索',
+                subject: '科目',
+                level: '年級',
+                upload: '上傳',
+                takePhoto: '拍照',
+                submit: '提交',
+                logout: '登出',
+                login: '登入',
+                signup: '註冊',
+                footerServices: '服務',
+                footerCompany: '關於我們',
+                footerSupport: '支援',
+                installApp: '安裝 HK LMS 作為應用程式!',
+                offline: '您處於離線狀態。部分功能可能無法使用。',
+            },
+        };
+
+        // Helper Functions
+        function t(key) {
+            const lang = store.getState().language;
+            return i18n[lang][key] || key;
+        }
+
+        function updateLanguageUI() {
+            const lang = store.getState().language;
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+
+            // Update all i18n elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = t(key);
+            });
+
+            // Re-render current view
+            const currentView = window.location.hash || '#/';
+            const routes = {
+                '#/': renderDashboard,
+                '#/courses': renderCourses,
+                '#/lessons': renderLessons,
+                '#/assignments': renderAssignments,
+                '#/grades': renderGrades,
+                '#/parent': renderParent,
+            };
+            const View = routes[currentView] || routes['#/'];
+            View.render();
+        }
+
+        function updateActiveNav(hash) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-gray-100');
+                if (link.getAttribute('data-nav') === hash.replace('#/', '')) {
+                    link.classList.add('bg-gray-100');
+                }
+            });
+        }
+
+        function toggleLanguage() {
+            const currentLang = store.getState().language;
+            const newLang = currentLang === 'en' ? 'zh' : 'en';
+            store.dispatch('SET_LANGUAGE', newLang);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function getDaysUntil(dueDate) {
+            const now = new Date();
+            const due = new Date(dueDate);
+            const diff = due - now;
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            return days;
+        }
+
+        function getProgressColor(progress) {
+            if (progress >= 0.7) return '#6BCB77';
+            if (progress >= 0.4) return '#FFE66D';
+            return '#FFA500';
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'not_started': '#6495ED',
+                'in_progress': '#FFE66D',
+                'submitted': '#4ECDC4',
+                'graded': '#6BCB77',
+            };
+            return colors[status] || '#6495ED';
+        }
+
+        function getStatusIcon(status) {
+            const icons = {
+                'not_started': '⬜',
+                'in_progress': '⏳',
+                'submitted': '✅',
+                'graded': '📊',
+            };
+            return icons[status] || '⬜';
+        }
+
+        // View Renderers
+        function renderDashboard() {
+            const content = `
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl font-bold mb-8">${t('welcome')}, 陳小明! 👋</h1>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="card p-6">
+                            <h2 class="text-xl font-semibold mb-4">${t('progress')}</h2>
+                            <p class="text-4xl font-bold text-5xl" style="color: var(--primary);">65%</p>
+                            <p class="text-gray-600 mt-2">15/23 lessons completed</p>
+                            <button class="btn-primary w-full min-h-[44px] mt-4" onclick="router.navigate('#/courses')">
+                                ${t('continueLearning')} 📚
+                            </button>
+                        </div>
+                        <div class="card p-6">
+                            <h2 class="text-xl font-semibold mb-4">${t('assignments')}</h2>
+                            <div class="space-y-3">
+                                ${mockData.assignments.slice(0, 2).map(assignment => `
+                                    <div class="flex items-center justify-between p-3 rounded-lg" style="background: var(--light-bg);">
+                                        <div>
+                                            <h3 class="font-medium">${assignment.titleEn}</h3>
+                                            <p class="text-sm text-gray-600">${t('due')}: ${assignment.dueDateEn}</p>
+                                        </div>
+                                        <span class="text-2xl" style="color: ${getStatusColor(assignment.status)};">${getStatusIcon(assignment.status)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="card p-6">
+                            <h2 class="text-xl font-semibold mb-4">📅 Calendar</h2>
+                            <p class="text-gray-600">No upcoming events</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('app-content').innerHTML = content;
+        }
+
+        function renderCourses() {
+            const enrolled = mockData.courses.filter(c => c.enrolled);
+            const available = mockData.courses.filter(c => !c.enrolled);
+
+            const content = `
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl font-bold mb-2">${t('myCourses')}</h1>
+
+                    <div class="flex items-center gap-3 mb-6 overflow-x-auto pb-2">
+                        <button class="btn-secondary whitespace-nowrap min-h-[44px] px-4">${t('allCourses')}</button>
+                        <select class="min-h-[44px] px-3 rounded-lg border-2 border-gray-200">
+                            <option>${t('subject')}</option>
+                            <option>${t('level')}</option>
+                        </select>
+                        <input type="text" placeholder="${t('search')}" class="min-h-[44px] px-3 rounded-lg border-2 border-gray-200 flex-grow">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${enrolled.map(course => `
+                            <div class="card overflow-hidden cursor-pointer animate-bounce" onclick="router.navigate('#/lessons/${course.id}')">
+                                <img src="${course.thumbnail}" alt="${course.titleEn}" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs px-2 py-1 rounded-full" style="background: var(--secondary); color: white;">${course.levelEn}</span>
+                                        <div class="progress-ring">
+                                            <svg width="60" height="60" viewBox="0 0 36 36">
+                                                <circle r="16" cx="18" cy="18" fill="none" stroke="#E5E7EB" stroke-width="4"/>
+                                                <path d="M 18 2 A 16 16 0 1 1 0 32 18" fill="none" stroke="${getProgressColor(course.progress)}" stroke-width="4" stroke-linecap="round"/>
+                                            </svg>
+                                            <span class="absolute inset-0 flex items-center justify-center font-bold text-sm">${Math.round(course.progress * 100)}%</span>
+                                        </div>
+                                    </div>
+                                    <h3 class="font-semibold mb-1">${store.getState().language === 'zh' ? course.titleZh : course.titleEn}</h3>
+                                    <p class="text-sm text-gray-600 mb-3">${store.getState().language === 'zh' ? course.descriptionZh : course.descriptionEn}</p>
+                                    <button class="btn-primary w-full min-h-[44px]" onclick="event.stopPropagation(); store.dispatch('ENROLL_COURSE', '${course.id}')">
+                                        ${t('continueLearning')} 🚀
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <h2 class="text-2xl font-semibold mt-8 mb-4">${t('allCourses')}</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${available.map(course => `
+                            <div class="card overflow-hidden cursor-pointer animate-bounce">
+                                <img src="${course.thumbnail}" alt="${course.titleEn}" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs px-2 py-1 rounded-full" style="background: var(--accent); color: var(--dark-bg);">${course.levelEn}</span>
+                                        <button class="btn-secondary min-h-[44px] px-4" onclick="event.stopPropagation()">
+                                            ${t('enrollNow')} 📝
+                                        </button>
+                                    </div>
+                                    <h3 class="font-semibold mb-1">${store.getState().language === 'zh' ? course.titleZh : course.titleEn}</h3>
+                                    <p class="text-sm text-gray-600 mb-3">${store.getState().language === 'zh' ? course.descriptionZh : course.descriptionEn}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('app-content').innerHTML = content;
+        }
+
+        function renderAssignments() {
+            const content = `
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl font-bold mb-6">${t('assignments')}</h1>
+
+                    <div class="space-y-4">
+                        ${mockData.assignments.map(assignment => {
+                            const daysUntil = getDaysUntil(assignment.dueDate);
+                            const daysText = daysUntil <= 0 ? `${t('offline')}!` : `${t('due')} in ${daysUntil} days`;
+                            const urgencyClass = daysUntil <= 1 ? 'border-l-2' + (daysUntil <= 0 ? ' border-red-500' : ' border-orange-500') : 'border-l-2 border-gray-200';
+
+                            return `
+                                <div class="card p-5 ${urgencyClass}">
+                                    <div class="flex items-start justify-between mb-3">
+                                        <div>
+                                            <h3 class="font-semibold mb-1">${store.getState().language === 'zh' ? assignment.titleZh : assignment.titleEn}</h3>
+                                            <p class="text-sm text-gray-600">${store.getState().language === 'zh' ? assignment.descriptionZh : assignment.descriptionEn}</p>
+                                            <p class="text-sm mt-2">
+                                                <span style="color: ${getStatusColor(assignment.status)};">${daysText}</span>
+                                                <span class="text-gray-600 ml-2">| ${store.getState().language === 'zh' ? assignment.titleZh : assignment.titleEn}</span>
+                                            </p>
+                                        </div>
+                                        <span class="text-2xl">${getStatusIcon(assignment.status)}</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button class="btn-secondary min-h-[44px] px-4 flex-1">📷 ${t('takePhoto')}</button>
+                                        <button class="btn-primary min-h-[44px] px-4 flex-1">${assignment.status === 'graded' ? 'View' : t('submit')}</button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('app-content').innerHTML = content;
+        }
+
+        function renderGrades() {
+            const content = `
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl font-bold mb-6">${t('grades')}</h1>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        ${mockData.grades.grades.map(grade => `
+                            <div class="card p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-semibold">${store.getState().language === 'zh' ? grade.subjectZh : grade.subjectEn}</h3>
+                                    <span class="text-3xl font-bold" style="color: var(--primary);">${grade.grade}</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <p class="text-2xl font-semibold" style="color: var(--success);">${grade.percentage}%</p>
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span>Class Rank: #${grade.classRank}/${grade.totalStudents}</span>
+                                        <span class="${grade.trend === 'up' ? 'text-green-600' : grade.trend === 'down' ? 'text-red-600' : 'text-gray-600'}">
+                                            ${grade.trend === 'up' ? '↑' : grade.trend === 'down' ? '↓' : '→'} ${store.getState().language === 'zh' ? grade.trendZh : grade.trendEn}
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">DSE ${t('prediction')}: ${grade.dssePrediction}</p>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                    <h4 class="font-medium mb-2">${t('history')}</h4>
+                                    <div class="flex gap-2">
+                                        ${grade.history.map((h, i) => `
+                                            <div class="text-center p-2 rounded-lg ${i === grade.history.length - 1 ? 'ring-2 ring-primary' : ''}" style="background: var(--light-bg);">
+                                                <p class="text-xs text-gray-600">${h.date}</p>
+                                                <p class="text-xl font-bold" style="color: var(--primary);">${h.grade}</p>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('app-content').innerHTML = content;
+        }
+
+        function renderParent() {
+            const content = `
+                <div class="animate-fade-in">
+                    <h1 class="text-3xl font-bold mb-6">${t('parent')} - 陳太太</h1>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="card p-6">
+                            <h2 class="text-xl font-semibold mb-4">📊 ${t('progress')}</h2>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">Lessons Completed</p>
+                                    <p class="text-3xl font-bold" style="color: var(--success);">15/20</p>
+                                    <p class="text-sm text-gray-600">75%</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-1">Assignments Submitted</p>
+                                    <p class="text-3xl font-bold" style="color: var(--secondary);">4/5</p>
+                                    <p class="text-sm text-gray-600">80%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4">Attendance: 100% (no absences)</p>
+                    </div>
+
+                    <div class="card p-6 mb-6">
+                        <h2 class="text-xl font-semibold mb-4">⚠️ ${t('notifications')}</h2>
+                        <div class="space-y-3">
+                            <div class="flex gap-3 p-3 rounded-lg" style="background: var(--light-bg);">
+                                <span class="text-2xl">📊</span>
+                                <div>
+                                    <p class="font-medium">Grade Posted: English (B+)</p>
+                                    <p class="text-sm text-gray-600">Ms. Wong just posted new grades</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 p-3 rounded-lg" style="background: var(--light-bg);">
+                                <span class="text-2xl">📅</span>
+                                <div>
+                                    <p class="font-medium">No absences this week</p>
+                                    <p class="text-sm text-gray-600">Great attendance record!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-6">
+                        <h2 class="text-xl font-semibold mb-4">📝 ${t('messages')}</h2>
+                        <div class="space-y-3">
+                            <div class="flex gap-3 p-3 rounded-lg" style="background: var(--light-bg);">
+                                <span class="text-2xl">👩‍🏫</span>
+                                <div>
+                                    <p class="font-medium">李老師</p>
+                                    <p class="text-sm text-gray-600">"陳小明 is doing great in Chinese this term. Keep up the good work!"</p>
+                                </div>
+                            </div>
+                            <button class="btn-secondary w-full min-h-[44px]">View Conversation 👉</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('app-content').innerHTML = content;
+        }
+
+        function renderLessons() {
+            const hash = window.location.hash;
+            const courseId = hash.replace('#/lessons/', '');
+
+            const course = mockData.courses.find(c => c.id === courseId);
+            if (!course) {
+                router.navigate('#/courses');
+                return;
+            }
+
+            const lessons = [
+                {
+                    id: 'lesson-1',
+                    title: 'Introduction to Classical Chinese',
+                    titleEn: 'Introduction to Classical Chinese',
+                    titleZh: '古典中文入门',
+                    duration: '5 minutes',
+                    order: 1,
+                    completed: true,
+                    type: 'text',
+                    thumbnail: 'https://images.unsplash.com/photo-1513475382584-09d8b8726b?w=200&h=150&fit=crop'
+                },
+                {
+                    id: 'lesson-2',
+                    title: 'Basic Concepts',
+                    titleEn: 'Basic Concepts',
+                    titleZh: '基本概念',
+                    duration: '12 minutes',
+                    order: 2,
+                    completed: true,
+                    type: 'text',
+                    thumbnail: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b066?w=200&h=150&fit=crop'
+                },
+                {
+                    id: 'lesson-3',
+                    title: 'Reading Practice',
+                    titleEn: 'Reading Practice',
+                    titleZh: '閱讀練習',
+                    duration: '15 minutes',
+                    order: 3,
+                    completed: false,
+                    type: 'text',
+                    thumbnail: 'https://images.unsplash.com/photo-1536979189027-46b44511f27?w=200&h=150&fit=crop'
+                },
+                {
+                    id: 'lesson-4',
+                    title: 'Grammar Focus',
+                    titleEn: 'Grammar Focus',
+                    titleZh: '語法重點',
+                    duration: '10 minutes',
+                    order: 4,
+                    completed: false,
+                    type: 'text',
+                    thumbnail: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b066?w=200&h=150&fit=crop'
+                },
+            ];
+
+            const content = `
+                <div class="animate-fade-in">
+                    <button class="mb-4 min-h-[44px] px-4 text-left" onclick="router.navigate('#/courses')">← ${t('back')}</button>
+                    <h1 class="text-3xl font-bold mb-2">${store.getState().language === 'zh' ? course.titleZh : course.titleEn}</h1>
+                    <p class="text-gray-600 mb-6">${store.getState().language === 'zh' ? course.descriptionZh : course.descriptionEn}</p>
+
+                    <div class="space-y-4">
+                        ${lessons.map(lesson => `
+                            <div class="card p-4 flex items-center justify-between ${lesson.completed ? 'border-l-2 border-green-500' : ''}">
+                                <div class="flex items-center gap-4 flex-grow">
+                                    <span class="text-2xl">${lesson.completed ? '☑' : '⬜'}</span>
+                                    <div>
+                                        <h3 class="font-semibold">${store.getState().language === 'zh' ? lesson.titleZh : lesson.titleEn}</h3>
+                                        <p class="text-sm text-gray-600">${lesson.duration}</p>
+                                    </div>
+                                </div>
+                                ${lesson.completed ? `<span class="text-sm text-green-600">${t('complete')}</span>` : `<button class="btn-primary min-h-[44px] px-4">${t('complete')}</button>`}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('app-content').innerHTML = content;
+        }
+
+        // Router
+        const Router = (() => {
+            const parseHash = (hash) => {
+                const [path, param] = hash.slice(1).split('/');
+                return { path, param };
+            };
+
+            const routes = {
+                '#/': renderDashboard,
+                '#/courses': renderCourses,
+                '#/lessons': renderLessons,
+                '#/assignments': renderAssignments,
+                '#/grades': renderGrades,
+                '#/parent': renderParent,
+            };
+
+            const navigate = (hash) => {
+                window.location.hash = hash;
+                const { path, param } = parseHash(hash);
+                const View = routes[hash] || routes['#/'];
+                if (View) {
+                    View.render(param);
+                    updateActiveNav(hash);
+                }
+            };
+
+            return { navigate };
+        })();
+
+        const router = Router();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialLang = store.getState().language;
+            document.body.classList.toggle('zh', initialLang === 'zh');
+            updateLanguageUI();
+            updateOnlineUI();
+
+            const hash = window.location.hash || '#/';
+            router.navigate(hash);
+
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash || '#/';
+                router.navigate(hash);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{
+  "course-1": [
+    {
+      "id": "lesson-1",
+      "courseId": "course-1",
+      "title": "Introduction to Classical Chinese",
+      "titleEn": "Introduction to Classical Chinese",
+      "titleZh": "古典中文入门",
+      "description": "Overview of classical Chinese literature and its significance.",
+      "duration": "5 minutes",
+      "order": 1,
+      "completed": true,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1513475382584-09d8b8726b?w=200&h=150&fit=crop"
+    },
+    {
+      "id": "lesson-2",
+      "courseId": "course-1",
+      "title": "Basic Concepts",
+      "titleEn": "Basic Concepts",
+      "titleZh": "基本概念",
+      "description": "Introduction to key literary concepts and terminology.",
+      "duration": "12 minutes",
+      "order": 2,
+      "completed": true,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1456513080510-7bf3a84b066?w=200&h=150&fit=crop"
+    },
+    {
+      "id": "lesson-3",
+      "courseId": "course-1",
+      "title": "Reading Practice",
+      "titleEn": "Reading Practice",
+      "titleZh": "閱讀練習",
+      "description": "Practice reading classical Chinese texts with proper pronunciation.",
+      "duration": "15 minutes",
+      "order": 3,
+      "completed": false,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1536979189027-46b44511f27?w=200&h=150&fit=crop"
+    },
+    {
+      "id": "lesson-4",
+      "courseId": "course-1",
+      "title": "Grammar Focus",
+      "titleEn": "Grammar Focus",
+      "titleZh": "語法重點",
+      "description": "Understanding sentence structure and grammar rules.",
+      "duration": "10 minutes",
+      "order": 4,
+      "completed": false,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1513475382584-09d8b8726b?w=200&h=150&fit=crop"
+    },
+    {
+      "id": "lesson-5",
+      "courseId": "course-1",
+      "title": "Writing Exercise",
+      "titleEn": "Writing Exercise",
+      "titleZh": "寫作練習",
+      "description": "Practice writing short essays on classical themes.",
+      "duration": "20 minutes",
+      "order": 5,
+      "completed": false,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1456513080510-7bf3a84b066?w=200&h=150&fit=crop"
+    }
+  ],
+  "course-2": [
+    {
+      "id": "lesson-6",
+      "courseId": "course-2",
+      "title": "Reading Comprehension",
+      "titleEn": "Reading Comprehension",
+      "titleZh": "閱讀理解",
+      "description": "Advanced reading strategies for complex English texts.",
+      "duration": "15 minutes",
+      "order": 1,
+      "completed": true,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1456513080510-7bf3a84b066?w=200&h=150&fit=crop"
+    },
+    {
+      "id": "lesson-7",
+      "courseId": "course-2",
+      "title": "Critical Thinking",
+      "titleEn": "Critical Thinking",
+      "titleZh": "批判性思維",
+      "description": "Analyzing arguments and developing logical reasoning.",
+      "duration": "12 minutes",
+      "order": 2,
+      "completed": false,
+      "type": "text",
+      "thumbnail": "https://images.unsplash.com/photo-1536979189027-46b44511f27?w=200&h=150&fit=crop"
+    }
+  ]
+}
