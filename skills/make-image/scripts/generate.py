@@ -3,6 +3,7 @@
 ModelScope Image Generation Script
 Generates images using ModelScope's API with async task polling.
 Automatically describes generated images after creation.
+Supports sending images to Telegram.
 
 Usage:
     python generate.py --prompt "A golden cat" --output result.jpg [--model MODEL] [--api-key KEY]
@@ -10,6 +11,7 @@ Usage:
 Environment:
     MODELSCOPE_API_KEY: API key for ModelScope (optional, can use --api-key)
     OPENAI_API_KEY: API key for OpenAI (required for description feature)
+    TELEGRAM_BOT_TOKEN: Telegram bot token (required for --send flag)
 """
 
 import argparse
@@ -24,6 +26,44 @@ from io import BytesIO
 
 BASE_URL = "https://api-inference.modelscope.cn/"
 DEFAULT_MODEL = "Tongyi-MAI/Z-Image-Turbo"
+
+
+def send_to_telegram(image_path: str, chat_id: str) -> bool:
+    """
+    Send image to Telegram via bot API.
+
+    Args:
+        image_path: Path to image file
+        chat_id: Telegram chat ID to send to
+
+    Returns:
+        True if sent successfully, False otherwise
+    """
+    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not bot_token:
+        print("⚠️  TELEGRAM_BOT_TOKEN not set, cannot send to Telegram")
+        return False
+
+    if not os.path.exists(image_path):
+        print(f"⚠️  Image not found: {image_path}")
+        return False
+
+    try:
+        url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+        with open(image_path, 'rb') as photo:
+            files = {'photo': photo}
+            data = {'chat_id': chat_id}
+            response = requests.post(url, files=files, data=data)
+
+        if response.status_code == 200:
+            print(f"✅ Image sent to Telegram chat {chat_id}")
+            return True
+        else:
+            print(f"⚠️  Failed to send to Telegram: {response.text}")
+            return False
+    except Exception as e:
+        print(f"⚠️  Error sending to Telegram: {e}")
+        return False
 
 
 def generate_image(
@@ -112,7 +152,7 @@ def generate_image(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate images using ModelScope API with automatic description"
+        description="Generate images using ModelScope API with automatic description and Telegram sending"
     )
     parser.add_argument(
         "--prompt", "-p",
@@ -152,6 +192,10 @@ def main():
         choices=["en", "zh"],
         help="Description language (en=English, zh=Chinese, default: zh)"
     )
+    parser.add_argument(
+        "--send",
+        help="Send image to Telegram chat ID after generation (requires TELEGRAM_BOT_TOKEN env var)"
+    )
 
     args = parser.parse_args()
 
@@ -171,6 +215,11 @@ def main():
             api_key=args.api_key,
             loras=loras,
         )
+
+        # Send to Telegram if requested
+        if args.send:
+            print("\n📤 Sending to Telegram...")
+            send_to_telegram(args.output, args.send)
 
         # Describe image automatically (unless disabled)
         if not args.no_describe:
