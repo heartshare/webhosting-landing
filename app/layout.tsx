@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cute Web Hosting - Fast, Secure & Friendly",
-  description: "The cutest web hosting! Fast, secure, and oh-so-friendly hosting for your website.",
+  title: "Web Hosting - Fast, Secure & Reliable",
+  description: "Professional web hosting with 99.9% uptime, advanced security, and expert support.",
 };
 
 export default function RootLayout({
