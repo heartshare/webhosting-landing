@@ -180,9 +180,13 @@ def main():
             quiet=args.quiet,
         )
 
-        # Output marker for OpenClaw to send the image
+        # Output marker for OpenClaw to send the image (with extra visibility)
         if not args.no_send:
-            print(f"\n__OPENCLAW_SEND_IMAGE__: {os.path.abspath(image_path)}")
+            # Flush output to ensure marker is visible
+            sys.stdout.flush()
+            print("\n\n__OPENCLAW_SEND_IMAGE__:", os.path.abspath(image_path))
+            sys.stdout.flush()
+            time.sleep(0.5)  # Brief pause to ensure marker is processed
         
         # Show summary (only in non-quiet mode)
         if not args.quiet:
@@ -201,6 +205,9 @@ def main():
                 else:
                     file_size_mb = file_size_kb / 1024
                     print(f"Size:   {file_size_mb:.1f} MB")
+        
+        # Return success status
+        sys.exit(0)
 
     except Exception as e:
         if not args.quiet:

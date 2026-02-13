@@ -13,6 +13,13 @@ description: >
 Generate AI images using ModelScope's inference API with async task polling.
 **Simple mode**: generates image, outputs marker for OpenClaw to send via Telegram, shows prompt & path only.
 
+**🚨 CRITICAL: ALWAYS SEND IMAGES MANUALLY AFTER GENERATION**
+After generating any image, you MUST immediately send it using the message tool:
+```
+message action=send channel=telegram target=350795515 media=/path/to/image.jpg
+```
+Do NOT rely solely on the automatic marker - always follow up with manual sending to ensure delivery.
+
 **Important**: Images are sent ONLY to your personal Telegram chat (ID: 350795515). No other destinations.
 
 ## How It Works
