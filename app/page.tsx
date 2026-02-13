@@ -68,22 +68,22 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#F8FAFC] font-['Outfit',sans-serif]">
       {/* Hero Section */}
-      <section className="py-16 px-6 max-w-7xl mx-auto">
+      <section className="py-16 px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold text-[#1E293B] mb-4 leading-tight font-['Outfit']">
+          <h1 className="text-[clamp(2rem,5vw,3.5rem)] font-bold text-[#1E293B] mb-4 leading-tight">
             Web Hosting That Just Works
           </h1>
-          <p className="text-[clamp(1rem,2vw,1.25rem)] text-[#1E293B] max-w-2xl mx-auto mb-8 leading-relaxed opacity-80 font-['Work_Sans']">
+          <p className="text-[clamp(1rem,2vw,1.25rem)] text-[#1E293B] max-w-2xl mx-auto mb-8 leading-relaxed opacity-80 font-['Work_Sans',sans-serif]">
             Fast, secure, and reliable hosting that makes your website perform at its best
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              className="bg-[#F97316] text-white text-lg font-semibold px-8 py-3 rounded-xl border-none cursor-pointer transition-all duration-200 hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:ring-offset-2"
+              className="bg-[#F97316] text-white text-lg font-semibold px-8 py-4 rounded-xl border-none cursor-pointer transition-all duration-200 hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:ring-offset-2 min-h-[48px]"
             >
               Start Free Trial
             </button>
             <button
-              className="bg-white text-[#2563EB] text-lg font-semibold px-8 py-3 rounded-xl border-2 border-[#2563EB] cursor-pointer transition-all duration-200 hover:bg-[#2563EB] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2"
+              className="bg-white text-[#2563EB] text-lg font-semibold px-8 py-4 rounded-xl border-2 border-[#2563EB] cursor-pointer transition-all duration-200 hover:bg-[#2563EB] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 min-h-[48px]"
             >
               View Plans
             </button>
@@ -108,157 +108,169 @@ export default function Home() {
       </section>
 
       {/* Bento Grid Section */}
-      <section className="py-12 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Large Feature Card - Lightning Fast */}
-          <div className="bg-white rounded-2xl p-8 md:col-span-2 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 md:col-span-2 cursor-pointer transition-all duration-200 hover:shadow-xl group min-h-[200px]">
+            <div className="flex flex-col sm:flex-row items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-200 flex-shrink-0">
                 <LightningIcon />
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-[#1E293B] mb-2">Lightning Fast</h3>
-                <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">99.9% uptime with blazing fast servers</p>
+              <div className="flex-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#1E293B] mb-2">Lightning Fast</h3>
+                <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">99.9% uptime with blazing fast servers</p>
               </div>
             </div>
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex items-center gap-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-[#2563EB]">99.9%</div>
-                <div className="text-sm text-[#1E293B] opacity-60 font-['Work_Sans']">Uptime</div>
+                <div className="text-3xl sm:text-4xl font-bold text-[#2563EB]">99.9%</div>
+                <div className="text-sm text-[#1E293B] opacity-60 font-['Work_Sans',sans-serif]">Uptime</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-[#2563EB]">&lt;1s</div>
-                <div className="text-sm text-[#1E293B] opacity-60 font-['Work_Sans']">Response</div>
+                <div className="text-3xl sm:text-4xl font-bold text-[#2563EB]">&lt;1s</div>
+                <div className="text-sm text-[#1E293B] opacity-60 font-['Work_Sans',sans-serif]">Response</div>
               </div>
             </div>
           </div>
 
           {/* Small Feature Card - Super Secure */}
-          <div className="bg-white rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
-            <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center text-[#F97316] group-hover:bg-[#F97316] group-hover:text-white transition-all duration-300 mb-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 cursor-pointer transition-all duration-200 hover:shadow-xl group min-h-[200px]">
+            <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center text-[#F97316] group-hover:bg-[#F97316] group-hover:text-white transition-all duration-200 mb-4">
               <ShieldIcon />
             </div>
             <h3 className="text-xl font-bold text-[#1E293B] mb-2">Super Secure</h3>
-            <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Advanced protection for your data</p>
+            <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Advanced protection for your data</p>
           </div>
 
           {/* Medium Feature Card - Easy Setup */}
-          <div className="bg-white rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
-            <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300 mb-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 cursor-pointer transition-all duration-200 hover:shadow-xl group min-h-[200px]">
+            <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-200 mb-4">
               <RocketIcon />
             </div>
             <h3 className="text-xl font-bold text-[#1E293B] mb-2">Easy Setup</h3>
-            <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Get online in just 5 minutes</p>
-            <div className="mt-4 text-sm text-[#1E293B] opacity-60 font-['Work_Sans']">
+            <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Get online in just 5 minutes</p>
+            <div className="mt-4 text-sm text-[#1E293B] opacity-60 font-['Work_Sans',sans-serif]">
               One-click deployment
             </div>
           </div>
 
           {/* Medium Feature Card - 24/7 Support */}
-          <div className="bg-white rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
-            <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300 mb-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 cursor-pointer transition-all duration-200 hover:shadow-xl group min-h-[200px]">
+            <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-200 mb-4">
               <ChatIcon />
             </div>
             <h3 className="text-xl font-bold text-[#1E293B] mb-2">24/7 Support</h3>
-            <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Expert help whenever you need it</p>
-            <div className="mt-4 text-sm text-[#1E293B] opacity-60 font-['Work_Sans']">
+            <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Expert help whenever you need it</p>
+            <div className="mt-4 text-sm text-[#1E293B] opacity-60 font-['Work_Sans',sans-serif]">
               Avg response: 2 min
             </div>
           </div>
 
           {/* Image Card - Server Infrastructure */}
-          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <img
-              src="/images/server-infrastructure.png"
-              alt="Server Infrastructure"
-              className="w-full h-48 object-cover"
-            />
+          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl">
+            <div className="aspect-video relative">
+              <img
+                src="/images/server-infrastructure.png"
+                alt="Server Infrastructure"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-[#1E293B] mb-2">Powerful Infrastructure</h3>
-              <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">State-of-the-art servers</p>
+              <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">State-of-the-art servers</p>
             </div>
           </div>
 
           {/* Image Card - Cloud Dashboard */}
-          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg md:col-span-2">
-            <img
-              src="/images/cloud-dashboard.png"
-              alt="Cloud Dashboard"
-              className="w-full h-48 object-cover"
-            />
+          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl md:col-span-2">
+            <div className="aspect-video relative">
+              <img
+                src="/images/cloud-dashboard.png"
+                alt="Cloud Dashboard"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-[#1E293B] mb-2">Smart Dashboard</h3>
-              <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Real-time analytics and one-click deployments</p>
+              <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Real-time analytics and one-click deployments</p>
             </div>
           </div>
 
           {/* Small Feature Card - Global CDN */}
-          <div className="bg-white rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group">
-            <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-300 mb-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 cursor-pointer transition-all duration-200 hover:shadow-xl group min-h-[200px]">
+            <div className="w-12 h-12 rounded-xl bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] group-hover:bg-[#2563EB] group-hover:text-white transition-all duration-200 mb-4">
               <GlobeIcon />
             </div>
             <h3 className="text-xl font-bold text-[#1E293B] mb-2">Global CDN</h3>
-            <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Content delivered fast worldwide</p>
+            <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Content delivered fast worldwide</p>
           </div>
 
           {/* Image Card - Security Hosting */}
-          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <img
-              src="/images/security-hosting.png"
-              alt="Secure Hosting"
-              className="w-full h-48 object-cover"
-            />
+          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl">
+            <div className="aspect-video relative">
+              <img
+                src="/images/security-hosting.png"
+                alt="Secure Hosting"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-[#1E293B] mb-2">Super Secure</h3>
-              <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Advanced encryption & DDoS</p>
+              <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Advanced encryption & DDoS</p>
             </div>
           </div>
 
-          {/* Gallery Card - Cute Cat */}
-          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <img
-              src="/images/cute-cat.png"
-              alt="Cute Cat"
-              className="w-full h-48 object-cover"
-            />
+          {/* Image Card - Cute Cat */}
+          <div className="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl">
+            <div className="aspect-video relative">
+              <img
+                src="/images/cute-cat.png"
+                alt="Cute Cat"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-[#1E293B] mb-2">Fun Stuff</h3>
-              <p className="text-[#1E293B] opacity-70 font-['Work_Sans']">Because we love our users</p>
+              <p className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Because we love our users</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-white rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <div className="text-5xl font-bold text-[#2563EB] mb-2">10k+</div>
-            <div className="text-[#1E293B] opacity-70 font-['Work_Sans']">Active Sites</div>
+      <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-200 hover:shadow-xl min-h-[140px] flex flex-col justify-center">
+            <div className="text-4xl sm:text-5xl font-bold text-[#2563EB] mb-2">10k+</div>
+            <div className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Active Sites</div>
           </div>
-          <div className="bg-white rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <div className="text-5xl font-bold text-[#2563EB] mb-2">99.9%</div>
-            <div className="text-[#1E293B] opacity-70 font-['Work_Sans']">Uptime SLA</div>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-200 hover:shadow-xl min-h-[140px] flex flex-col justify-center">
+            <div className="text-4xl sm:text-5xl font-bold text-[#2563EB] mb-2">99.9%</div>
+            <div className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Uptime SLA</div>
           </div>
-          <div className="bg-white rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <div className="text-5xl font-bold text-[#2563EB] mb-2">5min</div>
-            <div className="text-[#1E293B] opacity-70 font-['Work_Sans']">Setup Time</div>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-200 hover:shadow-xl min-h-[140px] flex flex-col justify-center">
+            <div className="text-4xl sm:text-5xl font-bold text-[#2563EB] mb-2">5min</div>
+            <div className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Setup Time</div>
           </div>
-          <div className="bg-white rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
-            <div className="text-5xl font-bold text-[#2563EB] mb-2">24/7</div>
-            <div className="text-[#1E293B] opacity-70 font-['Work_Sans']">Support</div>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 text-center cursor-pointer transition-all duration-200 hover:shadow-xl min-h-[140px] flex flex-col justify-center">
+            <div className="text-4xl sm:text-5xl font-bold text-[#2563EB] mb-2">24/7</div>
+            <div className="text-[#1E293B] opacity-70 font-['Work_Sans',sans-serif]">Support</div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-12 px-6 max-w-7xl mx-auto">
-        <div className="bg-[#2563EB] rounded-3xl p-8 md:p-12 text-white">
-          <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-center mb-12">
+      <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="bg-[#2563EB] rounded-3xl p-6 sm:p-8 md:p-12 text-white">
+          <h2 className="text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-center mb-8 sm:mb-12">
             What Our Customers Say
           </h2>
 
-          <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10">
+          <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-10">
             <div className="flex flex-col items-center text-center">
               {/* Star Rating */}
               <div className="flex gap-1 mb-4" role="img" aria-label={`${testimonials[activeTestimonial].rating} out of 5 stars`}>
@@ -268,7 +280,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial Text */}
-              <p className="text-[clamp(1.125rem,2.5vw,1.5rem)] leading-relaxed mb-6 italic font-['Work_Sans']">
+              <p className="text-[clamp(1.125rem,2.5vw,1.5rem)] leading-relaxed mb-6 italic font-['Work_Sans',sans-serif]">
                 "{testimonials[activeTestimonial].text}"
               </p>
 
@@ -277,7 +289,7 @@ export default function Home() {
                 <div className="text-xl font-bold mb-1">
                   {testimonials[activeTestimonial].name}
                 </div>
-                <div className="text-base opacity-90 font-['Work_Sans']">
+                <div className="text-base opacity-90 font-['Work_Sans',sans-serif]">
                   {testimonials[activeTestimonial].role}
                 </div>
               </div>
@@ -288,7 +300,7 @@ export default function Home() {
                   <button
                     key={index}
                     onClick={() => setActiveTestimonial(index)}
-                    className={`w-4 h-4 rounded-full border-none cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#2563EB] ${
+                    className={`w-4 h-4 rounded-full border-none cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#2563EB] min-h-[44px] min-w-[44px] flex items-center justify-center ${
                       activeTestimonial === index 
                         ? 'bg-white' 
                         : 'bg-white/40 hover:bg-white/60'
@@ -304,23 +316,23 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-6 text-center">
-        <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold text-[#1E293B] mb-6 font-['Outfit']">
+      <section className="py-16 px-4 sm:px-6 text-center">
+        <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold text-[#1E293B] mb-6">
           Ready to Get Started?
         </h2>
-        <p className="text-[clamp(1rem,2vw,1.25rem)] text-[#1E293B] max-w-2xl mx-auto mb-8 leading-relaxed opacity-80 font-['Work_Sans']">
+        <p className="text-[clamp(1rem,2vw,1.25rem)] text-[#1E293B] max-w-2xl mx-auto mb-8 leading-relaxed opacity-80 font-['Work_Sans',sans-serif]">
           Join 10,000+ websites already enjoying fast, reliable hosting
         </p>
         <button
-          className="bg-[#F97316] text-white text-xl font-semibold px-12 py-4 rounded-xl border-none cursor-pointer transition-all duration-300 hover:bg-[#ea580c] hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:ring-offset-2"
+          className="bg-[#F97316] text-white text-lg sm:text-xl font-semibold px-10 sm:px-12 py-4 sm:py-5 rounded-xl border-none cursor-pointer transition-all duration-200 hover:bg-[#ea580c] focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:ring-offset-2 min-h-[48px]"
         >
           Start Your Free Trial
         </button>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 text-center bg-white border-t border-gray-100">
-        <p className="text-[#1E293B] text-sm opacity-60 font-['Work_Sans']">
+      <footer className="py-8 px-4 sm:px-6 text-center bg-white border-t border-gray-100">
+        <p className="text-[#1E293B] text-sm opacity-60 font-['Work_Sans',sans-serif]">
           © 2026 Web Hosting. All rights reserved.
         </p>
       </footer>
