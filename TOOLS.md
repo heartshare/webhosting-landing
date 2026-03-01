@@ -36,25 +36,26 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ## API Keys & Credentials
 
 ### ModelScope Image Generation
-- **API Key:** `REDACTED`
+- **API Key:** stored in local env
 - Model: `Tongyi-MAI/Z-Image-Turbo`
 - Location: `/root/clawd/skills/make-image/`
 - Usage: Generate AI images via ModelScope API
 
 ### Perplexity Web Search
-- **API Key:** `REDACTED`
+- **API Key:** stored in local env
 - Model: `perplexity/sonar-pro`
 - Config: `tools.web.search.enabled: true`
 
 ### Vercel
-- **API Token:** `REDACTED`
+- **API Token:** stored in local env
 - Organization: `heartshares-projects`
 - Deployed Projects:
   - `webhosting-landing` → https://webhosting-landing-one.vercel.app
+  - `webhosting-test` → https://webhosting-test.vercel.app
 
 ### GitHub
 - Authenticated as: `heartshare`
-- Token: `gho_************************************`
+- Token: stored in local env
 - Scopes: gist, read:org, repo, workflow
 
 ## Projects
@@ -65,6 +66,13 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - **Tech Stack:** Next.js 16.1.6, Remotion 4.0.421, React 19
 - **Deployed:** https://webhosting-landing-one.vercel.app
 - **Features:** Remotion video player + AI-generated feature images
+
+### Web Hosting Test
+- **Repo:** `heartshare/webhosting-test`
+- **Location:** `/root/clawd/webhosting-test/`
+- **Tech Stack:** Next.js 16.1.6, React 19, TypeScript, Tailwind CSS
+- **Deployed:** https://webhosting-test.vercel.app
+- **Features:** Test page with environment check
 
 ---
 
