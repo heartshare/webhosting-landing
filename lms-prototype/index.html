@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlow LMS - High Fidelity Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap');
+
+        * {
+            font-family: 'Comic Neue', cursive;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Baloo 2', cursive;
+        }
+
+        .iphone-frame {
+            width: 393px;
+            height: 852px;
+            border-radius: 50px;
+            border: 12px solid #1a1a1a;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            background: white;
+            position: relative;
+        }
+
+        .iphone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 126px;
+            height: 34px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            z-index: 100;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Hide scrollbar for iframes */
+        iframe::-webkit-scrollbar {
+            display: none;
+        }
+
+        iframe {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-[1400px] mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-indigo-900 mb-4">EduFlow LMS</h1>
+            <p class="text-xl text-indigo-700">High Fidelity Mobile Prototype - iPhone 16</p>
+            <div class="flex justify-center gap-4 mt-6">
+                <span class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-mobile-alt mr-2"></i>iPhone 16
+                </span>
+                <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-code mr-2"></i>HTML + Tailwind CSS
+                </span>
+                <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-paint-brush mr-2"></i>High Fidelity
+                </span>
+            </div>
+        </div>
+
+        <!-- Screens Grid - 3 per row -->
+        <div class="flex flex-wrap justify-center gap-8">
+
+            <!-- Row 1 -->
+            <!-- Home Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/home.html" title="Home"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Home</p>
+                <p class="text-sm text-gray-600">Dashboard & Activity</p>
+            </div>
+
+            <!-- Courses Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/courses.html" title="Courses"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Courses</p>
+                <p class="text-sm text-gray-600">Browse & Discover</p>
+            </div>
+
+            <!-- My Learning Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/my-learning.html" title="My Learning"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">My Learning</p>
+                <p class="text-sm text-gray-600">Enrolled Courses</p>
+            </div>
+
+            <!-- Row 2 -->
+            <!-- Course Detail Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/course-detail.html" title="Course Detail"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Course Detail</p>
+                <p class="text-sm text-gray-600">Overview & Syllabus</p>
+            </div>
+
+            <!-- Course Player Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/course-player.html" title="Course Player"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Course Player</p>
+                <p class="text-sm text-gray-600">Video Lessons</p>
+            </div>
+
+            <!-- Profile Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/profile.html" title="Profile"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Profile</p>
+                <p class="text-sm text-gray-600">User Info & Stats</p>
+            </div>
+
+            <!-- Row 3 -->
+            <!-- Notifications Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/notifications.html" title="Notifications"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Notifications</p>
+                <p class="text-sm text-gray-600">Updates & Alerts</p>
+            </div>
+
+            <!-- Settings Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/settings.html" title="Settings"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Settings</p>
+                <p class="text-sm text-gray-600">App Preferences</p>
+            </div>
+
+            <!-- Achievements Screen -->
+            <div class="flex flex-col items-center">
+                <div class="iphone-frame">
+                    <div class="iphone-notch"></div>
+                    <iframe src="pages/achievements.html" title="Achievements"></iframe>
+                </div>
+                <p class="mt-4 text-lg font-semibold text-indigo-900">Achievements</p>
+                <p class="text-sm text-gray-600">Badges & Certificates</p>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-16 text-gray-600">
+            <p class="text-sm">EduFlow LMS Prototype - Built with HTML + Tailwind CSS + FontAwesome</p>
+            <p class="text-xs mt-2">All images from Unsplash • iPhone 16 Simulation</p>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add page switcher functionality for each phone
+        document.querySelectorAll('.iphone-frame').forEach(frame => {
+            const iframe = frame.querySelector('iframe');
+            iframe.addEventListener('load', () => {
+                try {
+                    const iframeDoc = iframe.contentWindow.document;
+                    // This allows navigation within the iframe
+                } catch(e) {
+                    // Cross-origin restrictions
+                }
+            });
+        });
+    </script>
+</body>
+</html>

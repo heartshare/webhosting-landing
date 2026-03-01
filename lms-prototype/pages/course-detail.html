@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlow - Course Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap');
+
+        * {
+            font-family: 'Comic Neue', cursive;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Baloo 2', cursive;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .lesson-item:hover {
+            background-color: #EEF2FF;
+        }
+
+        .lesson-item.completed {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen pt-[54px] pb-[83px]">
+    <!-- iOS Status Bar -->
+    <div class="fixed top-0 left-0 right-0 h-[54px] bg-white/95 backdrop-blur-sm z-50 flex items-center justify-between px-6 pt-2">
+        <div class="flex items-center gap-1">
+            <span class="text-sm font-semibold text-black">9:41</span>
+        </div>
+        <div class="flex items-center gap-1">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9v7c0 3.87 3.13 7 7 7s7-3.13 7-7V9c0-3.87-3.13-7-7-7zm0 12c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2s2 .9 2 2v3c0 1.1-.9 2-2 2z" fill="black"/>
+            </svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" fill="black"/>
+            </svg>
+            <div class="flex items-center ml-1">
+                <svg class="w-6 h-4" viewBox="0 0 24 16" fill="none" stroke="black" stroke-width="1">
+                    <rect x="1" y="1" width="18" height="12" rx="2"/>
+                    <path d="M23 4v9"/>
+                    <path d="M23 4H1"/>
+                </svg>
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full ml-0.5"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative">
+        <!-- Hero Image -->
+        <div class="h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop" alt="Course" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <button onclick="window.location.href='courses.html'" class="absolute top-16 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:bg-white hover:scale-110 cursor-pointer z-10">
+                <i class="fas fa-arrow-left text-gray-700"></i>
+            </button>
+            <button class="absolute top-16 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:bg-white hover:scale-110 cursor-pointer z-10">
+                <i class="far fa-heart text-gray-700"></i>
+            </button>
+        </div>
+
+        <!-- Course Info -->
+        <div class="px-5 -mt-8 relative z-10">
+            <div class="bg-white rounded-3xl p-5 shadow-lg mb-6">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-green-100 text-green-700 text-xs font-medium px-3 py-1 rounded-full">Bestseller</span>
+                    <span class="bg-indigo-100 text-indigo-700 text-xs font-medium px-3 py-1 rounded-full">Updated</span>
+                </div>
+                <h1 class="text-2xl font-bold text-indigo-900 mb-2">Introduction to Python</h1>
+                <p class="text-gray-600 text-sm mb-4">Learn Python programming from scratch. Build real projects and master the fundamentals.</p>
+
+                <!-- Stats -->
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <span class="font-bold text-gray-900">4.8</span>
+                        <span class="text-xs text-gray-500">(2,345 reviews)</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-users text-gray-400"></i>
+                        <span class="text-xs text-gray-600">15,678 students</span>
+                    </div>
+                </div>
+
+                <!-- Instructor -->
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl mb-4">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Instructor" class="w-12 h-12 rounded-full object-cover">
+                    <div class="flex-1">
+                        <p class="text-sm font-semibold text-gray-900">Mike Johnson</p>
+                        <p class="text-xs text-gray-500">Senior Python Developer</p>
+                    </div>
+                    <button class="text-indigo-600 text-xs font-medium">View</button>
+                </div>
+
+                <!-- Course Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                    <div class="text-center">
+                        <i class="fas fa-play-circle text-indigo-500 text-lg mb-1"></i>
+                        <p class="text-sm font-bold text-gray-900">12</p>
+                        <p class="text-xs text-gray-500">Lessons</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-clock text-indigo-500 text-lg mb-1"></i>
+                        <p class="text-sm font-bold text-gray-900">6h</p>
+                        <p class="text-xs text-gray-500">Duration</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-indigo-500 text-lg mb-1"></i>
+                        <p class="text-sm font-bold text-gray-900">Yes</p>
+                        <p class="text-xs text-gray-500">Certificate</p>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                    <div>
+                        <span class="text-2xl font-bold text-indigo-600">$39</span>
+                        <span class="text-sm text-gray-400 line-through ml-2">$99</span>
+                    </div>
+                    <button onclick="window.location.href='my-learning.html'" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        Enroll Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- What You'll Learn -->
+            <div class="bg-white rounded-2xl p-5 mb-6 shadow-sm border border-gray-100">
+                <h2 class="text-lg font-bold text-indigo-900 mb-4">What You'll Learn</h2>
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                        <p class="text-sm text-gray-700">Python fundamentals and syntax</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                        <p class="text-sm text-gray-700">Object-oriented programming concepts</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                        <p class="text-sm text-gray-700">Build real-world projects</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                        <p class="text-sm text-gray-700">Error handling and debugging</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Content -->
+            <div class="bg-white rounded-2xl p-5 mb-6 shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-indigo-900">Course Content</h2>
+                    <button class="text-indigo-600 text-sm font-medium">Expand all</button>
+                </div>
+
+                <!-- Lesson List -->
+                <div class="space-y-2">
+                    <div class="lesson-item completed flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">1. Introduction to Python</p>
+                            <p class="text-xs text-gray-500">12:30</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+
+                    <div class="lesson-item completed flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">2. Setting Up Your Environment</p>
+                            <p class="text-xs text-gray-500">18:45</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+
+                    <div class="lesson-item completed flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">3. Variables and Data Types</p>
+                            <p class="text-xs text-gray-500">24:10</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+
+                    <div class="lesson-item completed flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">4. Control Flow</p>
+                            <p class="text-xs text-gray-500">32:00</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+
+                    <div class="lesson-item completed flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">5. Functions</p>
+                            <p class="text-xs text-gray-500">28:15</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+
+                    <div class="lesson-item flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">6</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-indigo-900">6. Lists and Tuples</p>
+                            <p class="text-xs text-gray-500">35:20</p>
+                        </div>
+                        <i class="fas fa-play-circle text-indigo-600"></i>
+                    </div>
+
+                    <div class="lesson-item flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-lock text-gray-400 text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">7. Dictionaries</p>
+                            <p class="text-xs text-gray-500">22:45</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+
+                    <div class="lesson-item flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-colors">
+                        <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                            <i class="fas fa-lock text-gray-400 text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-medium text-gray-900">8. Object-Oriented Programming</p>
+                            <p class="text-xs text-gray-500">45:30</p>
+                        </div>
+                        <i class="fas fa-play-circle text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="bg-white rounded-2xl p-5 mb-6 shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-indigo-900">Student Reviews</h2>
+                    <span class="text-indigo-600 text-sm font-medium">View all</span>
+                </div>
+
+                <!-- Review Card -->
+                <div class="border-b border-gray-100 pb-4 mb-4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="User" class="w-10 h-10 rounded-full object-cover">
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-gray-900">Sarah Johnson</p>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            </div>
+                        </div>
+                        <span class="text-xs text-gray-500">2 days ago</span>
+                    </div>
+                    <p class="text-sm text-gray-700">Excellent course! Mike explains everything clearly. The projects were really helpful for practice.</p>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="User" class="w-10 h-10 rounded-full object-cover">
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-gray-900">David Chen</p>
+                            <div class="flex items-center gap-1">
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-yellow-400 text-xs"></i>
+                                <i class="fas fa-star text-gray-300 text-xs"></i>
+                            </div>
+                        </div>
+                        <span class="text-xs text-gray-500">1 week ago</span>
+                    </div>
+                    <p class="text-sm text-gray-700">Great introduction to Python. I learned so much and now feel confident building my own projects.</p>
+                </div>
+            </div>
+
+            <div class="h-4"></div>
+        </div>
+    </div>
+</body>
+</html>

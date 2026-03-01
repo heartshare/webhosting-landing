@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — EduFlow</title>
+  <meta name="description" content="Learn about EduFlow's mission to transform education through technology. Meet our team and see our story.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: '#6366F1',
+            'primary-dark': '#4F46E5',
+            secondary: '#818CF8',
+            cta: '#10B981',
+            'cta-dark': '#059669',
+            background: '#F5F3FF',
+            'text-dark': '#1E1B4B',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background text-text-dark min-h-screen">
+  
+  <!-- Navbar -->
+  <nav class="fixed top-4 left-4 right-4 z-50">
+    <div class="glass rounded-2xl shadow-lg px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-primary to-cta rounded-lg flex items-center justify-center">
+          <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="font-bold text-xl">EduFlow</span>
+      </div>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/index.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Home</a>
+        <a href="/index.html#features" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Features</a>
+        <a href="/courses.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Courses</a>
+        <a href="/pricing.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Pricing</a>
+        <span class="text-primary font-semibold">About</span>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        <a href="/login.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer font-medium">Log in</a>
+        <button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl font-semibold cursor-pointer transition-colors duration-200 shadow-md hover:shadow-lg">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-5xl font-bold mb-6">Transforming Education Through Technology</h1>
+      <p class="text-xl text-gray-600 leading-relaxed">
+        We're on a mission to make quality education accessible to everyone, everywhere. 
+        Using AI and modern technology, we're building the future of learning.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Mission -->
+  <section class="py-20 px-4 bg-white/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold mb-6">Our Mission</h2>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+            Education should be personal, engaging, and accessible. We believe that everyone 
+            deserves access to world-class learning opportunities, regardless of their location 
+            or background.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed">
+            By combining cutting-edge AI with expert-crafted content, we create learning 
+            experiences that adapt to each individual's needs, pace, and goals.
+          </p>
+        </div>
+        <div class="glass-card rounded-3xl p-8">
+          <div class="grid grid-cols-2 gap-6 text-center">
+            <div>
+              <div class="text-5xl font-bold text-primary mb-2">100K+</div>
+              <p class="text-gray-600">Learners</p>
+            </div>
+            <div>
+              <div class="text-5xl font-bold text-cta mb-2">100+</div>
+              <p class="text-gray-600">Courses</p>
+            </div>
+            <div>
+              <div class="text-5xl font-bold text-primary mb-2">50+</div>
+              <p class="text-gray-600">Instructors</p>
+            </div>
+            <div>
+              <div class="text-5xl font-bold text-cta mb-2">98%</div>
+              <p class="text-gray-600">Satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Values -->
+  <section class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Our Values</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          The principles that guide everything we do
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass-card rounded-2xl p-8 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center">
+            <i data-lucide="users" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Student-First</h3>
+          <p class="text-gray-600">
+            Every decision we make starts with what's best for our learners. 
+            Their success is our success.
+          </p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-8 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-cta to-emerald-400 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+            <i data-lucide="lightbulb" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Innovation</h3>
+          <p class="text-gray-600">
+            We're constantly pushing boundaries with AI and new technologies 
+            to create better learning experiences.
+          </p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-8 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+            <i data-lucide="heart" class="w-8 h-8 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Accessibility</h3>
+          <p class="text-gray-600">
+            Education should be available to everyone. We work to break down 
+            barriers and create inclusive content.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Team -->
+  <section class="py-20 px-4 bg-white/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Meet Our Team</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          A passionate group of educators, engineers, and innovators
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span class="text-3xl font-bold text-white">JC</span>
+          </div>
+          <h3 class="font-semibold text-lg mb-1">James Chen</h3>
+          <p class="text-primary text-sm mb-3">CEO & Co-Founder</p>
+          <p class="text-gray-600 text-sm">Former educator at MIT. Passionate about making learning accessible.</p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-24 h-24 bg-gradient-to-br from-cta to-emerald-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span class="text-3xl font-bold text-white">SR</span>
+          </div>
+          <h3 class="font-semibold text-lg mb-1">Sarah Rodriguez</h3>
+          <p class="text-primary text-sm mb-3">CTO & Co-Founder</p>
+          <p class="text-gray-600 text-sm">Ex-Google engineer. Building AI-powered learning systems.</p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span class="text-3xl font-bold text-white">MK</span>
+          </div>
+          <h3 class="font-semibold text-lg mb-1">Michael Kim</h3>
+          <p class="text-primary text-sm mb-3">Head of Content</p>
+          <p class="text-gray-600 text-sm">10+ years in curriculum design. Ensures quality across all courses.</p>
+        </div>
+        
+        <div class="glass-card rounded-2xl p-6 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span class="text-3xl font-bold text-white">EP</span>
+          </div>
+          <h3 class="font-semibold text-lg mb-1">Emma Patel</h3>
+          <p class="text-primary text-sm mb-3">Head of Design</p>
+          <p class="text-gray-600 text-sm">Creating beautiful, intuitive learning experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Story -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass-card rounded-3xl p-12">
+        <h2 class="text-4xl font-bold mb-6 text-center">Our Story</h2>
+        <div class="space-y-6 text-gray-600 leading-relaxed">
+          <p>
+            EduFlow started in 2020 with a simple observation: traditional online courses 
+            weren't working. Learners were dropping out, feeling isolated, and struggling 
+            to stay motivated. The one-size-fits-all approach was failing.
+          </p>
+          <p>
+            Our founders, James and Sarah, met while working on a research project at MIT. 
+            They realized that AI could solve this problem by personalizing the learning 
+            experience — adapting content, pace, and recommendations to each individual.
+          </p>
+          <p>
+            Today, EduFlow serves over 100,000 learners worldwide. We've built a platform 
+            that doesn't just deliver content but actively guides each student on their 
+            unique learning journey. And we're just getting started.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass-card rounded-3xl p-12 text-center">
+        <h2 class="text-4xl font-bold mb-4">Join Our Mission</h2>
+        <p class="text-xl text-gray-600 mb-8">
+          We're always looking for talented people who share our passion for education.
+        </p>
+        <a href="#" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-semibold cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl">
+          View Open Positions
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-white/20">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-cta rounded-lg flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="font-bold text-xl">EduFlow</span>
+          </div>
+          <p class="text-gray-600 text-sm">Modern education platform for learners worldwide.</p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/index.html#features" class="hover:text-primary transition-colors duration-200 cursor-pointer">Features</a></li>
+            <li><a href="/courses.html" class="hover:text-primary transition-colors duration-200 cursor-pointer">Courses</a></li>
+            <li><a href="/pricing.html" class="hover:text-primary transition-colors duration-200 cursor-pointer">Pricing</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">About</a></li>
+            <li><a href="/contact.html" class="hover:text-primary transition-colors duration-200 cursor-pointer">Contact</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Legal</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Privacy</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/20 text-sm text-gray-600">
+        <p>&copy; 2024 EduFlow. All rights reserved.</p>
+        <div class="flex items-center gap-4 mt-4 md:mt-0">
+          <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">
+            <i data-lucide="twitter" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

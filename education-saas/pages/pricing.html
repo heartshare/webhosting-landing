@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — EduFlow</title>
+  <meta name="description" content="Choose the perfect plan for your learning journey. Flexible pricing for individuals and teams.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: '#6366F1',
+            'primary-dark': '#4F46E5',
+            secondary: '#818CF8',
+            cta: '#10B981',
+            'cta-dark': '#059669',
+            background: '#F5F3FF',
+            'text-dark': '#1E1B4B',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-background text-text-dark min-h-screen">
+  
+  <!-- Navbar -->
+  <nav class="fixed top-4 left-4 right-4 z-50">
+    <div class="glass rounded-2xl shadow-lg px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-primary to-cta rounded-lg flex items-center justify-center">
+          <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="font-bold text-xl">EduFlow</span>
+      </div>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/index.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Home</a>
+        <a href="/index.html#features" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Features</a>
+        <a href="/courses.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">Courses</a>
+        <span class="text-primary font-semibold">Pricing</span>
+        <a href="/about.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer">About</a>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        <a href="/login.html" class="text-gray-600 hover:text-primary transition-colors duration-200 cursor-pointer font-medium">Log in</a>
+        <button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl font-semibold cursor-pointer transition-colors duration-200 shadow-md hover:shadow-lg">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Header -->
+  <section class="pt-32 pb-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-5xl font-bold mb-6">Simple, Transparent Pricing</h1>
+      <p class="text-xl text-gray-600">
+        Choose the plan that fits your learning goals. All plans include a 14-day free trial.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Pricing Toggle -->
+  <div class="flex justify-center mb-12 px-4">
+    <div class="glass rounded-full p-1.5 flex items-center gap-1">
+      <button id="monthlyBtn" class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary text-white transition-all duration-200">
+        Monthly
+      </button>
+      <button id="yearlyBtn" class="px-6 py-2.5 rounded-full text-sm font-medium text-gray-600 hover:text-primary transition-all duration-200">
+        Yearly
+        <span class="bg-cta text-white text-xs px-2 py-0.5 rounded-full ml-1">Save 20%</span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Pricing Cards -->
+  <section class="px-4 pb-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Free Plan -->
+        <div class="glass-card rounded-2xl p-8 cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">Free</h3>
+            <p class="text-gray-600 text-sm">Perfect for getting started</p>
+          </div>
+          
+          <div class="mb-6">
+            <span class="text-5xl font-bold">$0</span>
+            <span class="text-gray-500">/month</span>
+          </div>
+          
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Access to 5 free courses</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Basic progress tracking</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Community forum access</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-400">
+              <i data-lucide="x" class="w-5 h-5"></i>
+              <span>Certificate of completion</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-400">
+              <i data-lucide="x" class="w-5 h-5"></i>
+              <span>AI learning paths</span>
+            </li>
+          </ul>
+          
+          <button class="w-full bg-white/70 hover:bg-white/80 border border-primary/30 text-primary py-3 rounded-xl font-semibold cursor-pointer transition-all duration-200 hover:border-primary/50">
+            Get Started Free
+          </button>
+        </div>
+        
+        <!-- Pro Plan (Popular) -->
+        <div class="glass-card rounded-2xl p-8 cursor-pointer shadow-xl border-2 border-primary relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="bg-gradient-to-r from-primary to-cta text-white text-sm font-medium px-4 py-1.5 rounded-full">
+              Most Popular
+            </span>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">Pro</h3>
+            <p class="text-gray-600 text-sm">For serious learners</p>
+          </div>
+          
+          <div class="mb-6">
+            <span class="text-5xl font-bold" id="proPrice">$29</span>
+            <span class="text-gray-500">/month</span>
+          </div>
+          
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Access to all 100+ courses</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">AI-powered learning paths</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Certificates of completion</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Priority support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Offline access</span>
+            </li>
+          </ul>
+          
+          <button class="w-full bg-cta hover:bg-cta-dark text-white py-3 rounded-xl font-semibold cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl">
+            Start Free Trial
+          </button>
+        </div>
+        
+        <!-- Enterprise Plan -->
+        <div class="glass-card rounded-2xl p-8 cursor-pointer hover:shadow-xl transition-shadow duration-300">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-2">Enterprise</h3>
+            <p class="text-gray-600 text-sm">For teams and organizations</p>
+          </div>
+          
+          <div class="mb-6">
+            <span class="text-5xl font-bold">Custom</span>
+          </div>
+          
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Everything in Pro</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Team management dashboard</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Custom course creation</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">Dedicated account manager</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-cta"></i>
+              <span class="text-gray-600">SSO & advanced security</span>
+            </li>
+          </ul>
+          
+          <button class="w-full bg-white/70 hover:bg-white/80 border border-primary/30 text-primary py-3 rounded-xl font-semibold cursor-pointer transition-all duration-200 hover:border-primary/50">
+            Contact Sales
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="py-20 px-4 bg-white/50">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+        <p class="text-xl text-gray-600">Everything you need to know about pricing</p>
+      </div>
+      
+      <div class="space-y-4">
+        <div class="glass-card rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Can I cancel my subscription anytime?</h3>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <p class="text-gray-600 mt-3 hidden">Yes, you can cancel your subscription at any time. Your access will continue until the end of your billing period.</p>
+        </div>
+        
+        <div class="glass-card rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Do you offer refunds?</h3>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <p class="text-gray-600 mt-3 hidden">We offer a 14-day free trial so you can try before you buy. If you're not satisfied, cancel within the trial period at no cost.</p>
+        </div>
+        
+        <div class="glass-card rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">What's included in the Pro plan?</h3>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <p class="text-gray-600 mt-3 hidden">Pro includes access to all courses, AI learning paths, certificates, priority support, and offline access to content.</p>
+        </div>
+        
+        <div class="glass-card rounded-xl p-6 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">Can I switch plans later?</h3>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500"></i>
+          </div>
+          <p class="text-gray-600 mt-3 hidden">Absolutely! You can upgrade or downgrade your plan at any time from your account settings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass-card rounded-3xl p-12 text-center">
+        <h2 class="text-4xl font-bold mb-4">Still Have Questions?</h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Our team is here to help you find the perfect plan.
+        </p>
+        <a href="/contact.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-semibold cursor-pointer transition-colors duration-200 shadow-lg hover:shadow-xl">
+          Contact Support
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-white/20">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-cta rounded-lg flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="font-bold text-xl">EduFlow</span>
+          </div>
+          <p class="text-gray-600 text-sm">Modern education platform for learners worldwide.</p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/index.html#features" class="hover:text-primary transition-colors duration-200 cursor-pointer">Features</a></li>
+            <li><a href="/courses.html" class="hover:text-primary transition-colors duration-200 cursor-pointer">Courses</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Pricing</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="/about.html" class="hover:text-primary transition-colors duration-200 cursor-pointer">About</a></li>
+            <li><a href="/contact.html" class="hover:text-primary transition-colors duration-200 cursor-pointer">Contact</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Legal</h4>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Privacy</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/20 text-sm text-gray-600">
+        <p>&copy; 2024 EduFlow. All rights reserved.</p>
+        <div class="flex items-center gap-4 mt-4 md:mt-0">
+          <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">
+            <i data-lucide="twitter" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="hover:text-primary transition-colors duration-200 cursor-pointer">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Pricing Toggle
+    const monthlyBtn = document.getElementById('monthlyBtn');
+    const yearlyBtn = document.getElementById('yearlyBtn');
+    const proPrice = document.getElementById('proPrice');
+    
+    let isYearly = false;
+    
+    monthlyBtn.addEventListener('click', () => {
+      isYearly = false;
+      monthlyBtn.classList.add('bg-primary', 'text-white');
+      monthlyBtn.classList.remove('text-gray-600');
+      yearlyBtn.classList.remove('bg-primary', 'text-white');
+      yearlyBtn.classList.add('text-gray-600');
+      proPrice.textContent = '$29';
+    });
+    
+    yearlyBtn.addEventListener('click', () => {
+      isYearly = true;
+      yearlyBtn.classList.add('bg-primary', 'text-white');
+      yearlyBtn.classList.remove('text-gray-600');
+      monthlyBtn.classList.remove('bg-primary', 'text-white');
+      monthlyBtn.classList.add('text-gray-600');
+      proPrice.textContent = '$23';
+    });
+    
+    // FAQ Accordion
+    document.querySelectorAll('.glass-card h3').forEach(header => {
+      header.addEventListener('click', () => {
+        const card = header.parentElement;
+        const answer = card.querySelector('p');
+        const icon = card.querySelector('i:last-child');
+        
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+  </script>
+</body>
+</html>

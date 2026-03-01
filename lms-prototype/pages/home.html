@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlow - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Comic+Neue:wght@300;400;700&display=swap');
+
+        * {
+            font-family: 'Comic Neue', cursive;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Baloo 2', cursive;
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Progress animation */
+        .progress-bar {
+            animation: fillProgress 1.5s ease-out forwards;
+        }
+
+        @keyframes fillProgress {
+            from {
+                width: 0;
+            }
+        }
+
+        /* Pulse animation for notification */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .notification-badge {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen pt-[54px] pb-[83px]">
+    <!-- iOS Status Bar -->
+    <div class="fixed top-0 left-0 right-0 h-[54px] bg-white/95 backdrop-blur-sm z-50 flex items-center justify-between px-6 pt-2">
+        <div class="flex items-center gap-1">
+            <span class="text-sm font-semibold text-black">9:41</span>
+        </div>
+        <div class="flex items-center gap-1">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9v7c0 3.87 3.13 7 7 7s7-3.13 7-7V9c0-3.87-3.13-7-7-7zm0 12c-1.1 0-2-.9-2-2V9c0-1.1.9-2 2-2s2 .9 2 2v3c0 1.1-.9 2-2 2z" fill="black"/>
+            </svg>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" fill="black"/>
+            </svg>
+            <div class="flex items-center ml-1">
+                <svg class="w-6 h-4" viewBox="0 0 24 16" fill="none" stroke="black" stroke-width="1">
+                    <rect x="1" y="1" width="18" height="12" rx="2"/>
+                    <path d="M23 4v9"/>
+                    <path d="M23 4H1"/>
+                </svg>
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full ml-0.5"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="px-5">
+        <!-- Welcome Header -->
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-indigo-900">Welcome back!</h1>
+                <p class="text-gray-500 text-sm">Ready to learn today?</p>
+            </div>
+            <button class="relative w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-indigo-200 cursor-pointer group">
+                <i class="fas fa-bell text-indigo-600 transition-transform duration-200 group-hover:rotate-12"></i>
+                <span class="notification-badge absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-white text-[10px] flex items-center justify-center font-bold">3</span>
+            </button>
+        </div>
+
+        <!-- Learning Progress Card -->
+        <div class="bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-3xl p-5 mb-6 shadow-lg transform hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <p class="text-indigo-200 text-sm font-medium">Weekly Progress</p>
+                    <h2 class="text-white text-3xl font-bold">68%</h2>
+                </div>
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-trophy text-yellow-300 text-2xl"></i>
+                </div>
+            </div>
+            <div class="w-full bg-indigo-900/50 rounded-full h-2.5 mb-3">
+                <div class="progress-bar bg-green-400 h-2.5 rounded-full" style="width: 68%"></div>
+            </div>
+            <div class="flex items-center justify-between text-indigo-200 text-xs">
+                <span>3 of 5 lessons completed</span>
+                <span>Keep going! 🎉</span>
+            </div>
+        </div>
+
+        <!-- Continue Learning Section -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-indigo-900">Continue Learning</h2>
+                <a href="my-learning.html" class="text-indigo-600 text-sm font-medium hover:text-indigo-800 transition-colors cursor-pointer">View All</a>
+            </div>
+
+            <!-- Course Card 1 -->
+            <div onclick="window.location.href='course-player.html'" class="bg-white rounded-2xl p-4 mb-4 shadow-sm border border-gray-100 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer group">
+                <div class="flex gap-4">
+                    <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="Course" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-xs text-indigo-600 font-medium mb-1">In Progress</p>
+                        <h3 class="font-semibold text-gray-900 truncate group-hover:text-indigo-600 transition-colors">Introduction to Python</h3>
+                        <p class="text-xs text-gray-500 mb-2">Lesson 5 of 12</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5">
+                            <div class="bg-green-500 h-1.5 rounded-full progress-bar" style="width: 42%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Card 2 -->
+            <div onclick="window.location.href='course-player.html'" class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer group">
+                <div class="flex gap-4">
+                    <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop" alt="Course" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-xs text-indigo-600 font-medium mb-1">In Progress</p>
+                        <h3 class="font-semibold text-gray-900 truncate group-hover:text-indigo-600 transition-colors">UI/UX Design Fundamentals</h3>
+                        <p class="text-xs text-gray-500 mb-2">Lesson 3 of 8</p>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5">
+                            <div class="bg-green-500 h-1.5 rounded-full progress-bar" style="width: 38%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Section -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-indigo-900">Recommended for You</h2>
+                <a href="courses.html" class="text-indigo-600 text-sm font-medium hover:text-indigo-800 transition-colors cursor-pointer">View All</a>
+            </div>
+
+            <!-- Recommended Card -->
+            <div onclick="window.location.href='course-detail.html'" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-200 hover:scale-[1.02] hover:shadow-lg cursor-pointer group">
+                <div class="h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop" alt="Course" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="bg-indigo-100 text-indigo-700 text-xs font-medium px-2 py-1 rounded-full">New</span>
+                        <div class="flex items-center gap-1">
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <span class="text-xs text-gray-600">4.9</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-indigo-600 transition-colors">Data Science & Machine Learning</h3>
+                    <p class="text-xs text-gray-500 mb-3">Master Python, statistics, and ML algorithms</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Instructor" class="w-6 h-6 rounded-full object-cover">
+                            <span class="text-xs text-gray-600">Dr. John Smith</span>
+                        </div>
+                        <span class="text-xs text-indigo-600 font-semibold">24 lessons</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 gap-3 mb-6">
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 transition-all duration-200 hover:scale-[1.02] cursor-pointer">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-3">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                </div>
+                <p class="text-2xl font-bold text-indigo-900">12</p>
+                <p class="text-xs text-gray-500">Courses Completed</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 transition-all duration-200 hover:scale-[1.02] cursor-pointer">
+                <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-3">
+                    <i class="fas fa-clock text-purple-500"></i>
+                </div>
+                <p class="text-2xl font-bold text-indigo-900">48h</p>
+                <p class="text-xs text-gray-500">Learning Time</p>
+            </div>
+        </div>
+
+        <div class="h-4"></div>
+    </div>
+
+    <!-- iOS Tab Bar -->
+    <div class="fixed bottom-0 left-0 right-0 h-[83px] bg-white/95 backdrop-blur-sm border-t border-gray-200 z-50 pb-8">
+        <div class="flex items-center justify-around h-full px-4">
+            <button onclick="window.location.href='home.html'" class="tab-btn active flex flex-col items-center gap-1 px-4 py-2 transition-all duration-200 cursor-pointer group">
+                <div class="w-6 h-6 flex items-center justify-center transition-all duration-200 group-hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                </div>
+                <span class="text-[10px] font-medium text-indigo-600">Home</span>
+            </button>
+
+            <button onclick="window.location.href='courses.html'" class="tab-btn flex flex-col items-center gap-1 px-4 py-2 transition-all duration-200 cursor-pointer group">
+                <div class="w-6 h-6 flex items-center justify-center transition-all duration-200 group-hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                </div>
+                <span class="text-[10px] font-medium text-gray-400">Courses</span>
+            </button>
+
+            <button onclick="window.location.href='my-learning.html'" class="tab-btn flex flex-col items-center gap-1 px-4 py-2 transition-all duration-200 cursor-pointer group">
+                <div class="w-6 h-6 flex items-center justify-center transition-all duration-200 group-hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                </div>
+                <span class="text-[10px] font-medium text-gray-400">Learning</span>
+            </button>
+
+            <button onclick="window.location.href='profile.html'" class="tab-btn flex flex-col items-center gap-1 px-4 py-2 transition-all duration-200 cursor-pointer group">
+                <div class="w-6 h-6 flex items-center justify-center transition-all duration-200 group-hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </div>
+                <span class="text-[10px] font-medium text-gray-400">Profile</span>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .tab-btn svg {
+            transition: stroke 0.2s;
+        }
+        .tab-btn.active svg {
+            stroke: #4F46E5;
+        }
+    </style>
+</body>
+</html>
